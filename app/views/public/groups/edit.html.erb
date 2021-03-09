@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>出店団体情報編集</h4></div>
+  <div class="col-xs-9"></div>
+</div>
+
+<%= form_for(@group,url:public_group_path) do |f| %>
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-2">
+       <p>名前</p>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"団体名" %>
+     </div>
+     <div class = "field col-xs-2">
+       <%= f.text_field :group_name, autofocus: true, autocomplete: "団体名" %>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"団体名カナ" %>
+     </div>
+     <div class = "field col-xs-5">
+       <%= f.text_field :group_name_kana, autofocus: true, autocomplete: "団体名カナ" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-2">
+       <p>代表者氏名</p>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"代表者氏名" %>
+     </div>
+     <div class = "field col-xs-2">
+       <%= f.text_field :representative_name, autofocus: true, autocomplete: "代表者氏名" %>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"代表者カナ" %>
+     </div>
+     <div class = "field col-xs-5">
+       <%= f.text_field :representative_name_kana, autofocus: true, autocomplete: "代表者カナ" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>代表者電話番号</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :representative_telephone_number, autofocus: true, autocomplete: "代表者電話番号" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>代表者メールアドレス</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.email_field :email, autofocus: true, autocomplete: "代表者メールアドレス" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>副代表者氏名</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :subdelegate_name, autofocus: true, autocomplete: "副代表者氏名" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>副代表者カナ</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :subdelegate_name_kana, autofocus: true, autocomplete: "副代表者カナ" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>副代表者電話番号</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :subdelegate_telephone_number, autofocus: true, autocomplete: "副代表者電話番号" %>
+     </div>
+  </div>
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>副代表者メールアドレス</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.email_field :subdelegate_email, autofocus: true, autocomplete: "副代表者メールアドレス" %>
+     </div>
+  </div>
+
+
+   <%= f.hidden_field :is_deleted, :value => false %>
+
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+      <div class="actions">
+        <%= f.submit "更新" %>
+      </div>
+     </div>
+  </div>
+
+<% end %>

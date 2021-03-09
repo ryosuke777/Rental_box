@@ -1,0 +1,2 @@
+module Public::GasRequestsHelper
+end

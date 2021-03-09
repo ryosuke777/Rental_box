@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>マイページ</h4></div>
+  <div class="col-xs-9"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+     <div class="col-xs-2">
+     	<h4>登録情報</h4>
+     </div>
+     <div class="col-xs-2" style="display:inline-flex">
+
+	   <%= button_to "編集する", edit_public_group_path,method: :get %>
+	   <%= button_to "パスワードを変更する", edit_group_password_path(current_group.id),method: :get %>
+	 </div>
+     <div class="col-xs-1"></div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+	<table class="table table-noborder">
+	  <tr>
+	  	<th>代表者氏名</th>
+	  	<td><%= @group.representative_name %></td>
+	  </tr>
+	  <tr>
+	  	<th>代表者カナ</th>
+	  	<td><%= @group.representative_name_kana %></td>
+	  </tr>
+	  <tr>
+
+	  <tr>
+	  	<th>代表者電話番号</th>
+		  <td><%= @group.representative_telephone_number %></td>
+	  </tr>
+
+	  <tr>
+	  	<th>代表者メールアドレス</th>
+	  	<td><%= @group.email %></td>
+	  </tr>
+
+	  <tr>
+	  	<th>副代表者氏名</th>
+	  	<td><%= @group.subdelegate_name %></td>
+	  </tr>
+
+	  <tr>
+	  	<th>副代表者フリガナ</th>
+	  	<td><%= @group.subdelegate_name_kana %></td>
+	  </tr>		  
+
+	  <tr>
+	  	<th>副代表者電話番号</th>
+	  	<td><%= @group.subdelegate_telephone_number %></td>
+	  </tr>		  
+
+	  <tr>
+	  	<th>副代表者メールアドレス</th>
+	  	<td><%= @group.subdelegate_email %></td>
+	  </tr>
+	</table>
+</div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-4 form-group">
+
+    <br>
+	<label>注文履歴</label>
+  </div>
+</div>

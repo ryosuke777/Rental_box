@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3"><h4>販売品目、出店日登録ページ</h4></div>
+  <div class="col-xs-7"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-10">
+    <%= form_with model: @request, url:public_requests_path, method: :post,local: true do |f| %>
+    <%= f.hidden_field :group_id, :value => current_group.id %>
+       <tr>
+         <th class="col-xs-3">販売品目</th>
+      	 <td><%= f.text_field :item_for_sale %></td>
+       </tr>
+       <br>
+       <th>
+       	 <th class="col-xs-3">出店日</th>
+    	   <td><%= f.radio_button :date_option,0%> 10/23(土)</td><br>
+    	   <td><%= f.radio_button :date_option,1%> 10/24(日)</td><br>
+    	   <td><%= f.radio_button :date_option,2%> 10/23(土),10/24(日) 両日</td>
+       </th>
+
+       <div class="text-center">
+        <%= f.submit '次：レンタル機材を選択する' %>
+       </div>
+    <% end %>
+  </div>
+</div>

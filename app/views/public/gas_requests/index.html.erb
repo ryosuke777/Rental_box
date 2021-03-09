@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3"><h4>ガス注文</h4></div>
+  <div class="col-xs-7"></div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-9">
+   <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">レンタル品名</th>
+            <th scope="col">数量</th>
+            <th scope="col">消費ガス量(目安)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= cart_item.item.name %></td>
+              <td><%= cart_item.item_amount %></td>
+              <td>
+              	<%if cart_item.item.fuel_economy_option == false %>
+              	-
+              	<% else %>
+              	<%= cart_item.item.fuel_economy * cart_item.item_amount %>
+              	<% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+      </table>
+   </div>
+ </div>
+
+      <br>
+<br>
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-6">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="col-xs-1">名称</th>
+            <th scope="col" class="col-xs-1">価格 (税込)</th>
+            <th scope="col" class="col-xs-1">数量</th>
+          </tr>
+        </thead>
+
+        <% @gases.each do |gase| %>
+          <% if @test = GasRequest.find_by(group_id: current_group.id, gase_id: gase.id).present? %>
+            <% @test = GasRequest.find_by(group_id: current_group.id, gase_id: gase.id) %>
+          <% else %>
+            <% @test = @gas_request %>
+          <% end %>
+
+          <tr>
+            <td><%= gase.name %></td>
+            <td><%= ((gase.price.to_i)*1.10).floor %></td>
+            <td>
+  			       <%= form_for(@gas_request, url:public_gas_requests_path) do |f| %>
+  			   	     <%= f.hidden_field :gase_id, :value => gase.id %>
+  			  	     <%= f.hidden_field :group_id, :value => current_group.id %>
+  			  	     <%= f.text_field :gas_amount, :value =>  @gas_request.gas_amount, :value =>  @test.gas_amount %>
+                 <%= f.submit "更新" %>
+               <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+
+  <div class="col-xs-3">
+
+
+
+          <table class="table table-bordered">
+            </tbody>
+              <thead>
+                <tr>
+                  <td >消費ガス合計 (kg/h)</td>
+                  <td>
+			               <% @sum = 0 %>
+			               <% @cart_items.each do |cart_item| %>
+			                 <% @sum += cart_item.item.fuel_economy * cart_item.item_amount %>
+			               <% end %>
+			               <%= @sum.round(2) %>
+                  </td>
+                </tr>
+                <tr>
+                  <td >概算稼働時間 (時間)</td>
+                  <td>
+                     <% if @sum == 0 %>
+                       <%= 0 %>
+                     <% else %>
+                       <% @operating_time = @total_amount/@sum %>
+                       <%= @operating_time.round(1)  %>
+                     <% end %>
+                   </td>
+                </tr>
+              </thead>
+            </tbody>
+          </table>
+
+
+
+          <table class="table table-bordered">
+            </tbody>
+              <thead>
+                <tr>
+                  <td >ガス合計金額</td>
+                  <td>
+                  <%= @total_gas_payment * 1.10.round %>
+                  </td>
+                </tr>
+              </thead>
+            </tbody>
+          </table>
+
+  </div>
+
+</div>
+
+  <div class="text-center">
+   <%= link_to '次: 確認画面へ進む',"/public/requests/confirm" %>
+
+  </div>

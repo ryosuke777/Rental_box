@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>会員一覧</h4></div>
+  <div class="col-xs-9"></div>
+  <div class="col-xs-1"></div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">会員ID</th>
+            <th scope="col">団体名</th>
+            <th scope="col">代表者</th>
+            <th scope="col">販売品目</th>
+            <th scope="col">代表者番号</th>
+            <th scope="col">レンタル品</th>
+            <th scope="col">ガス</th>
+            <th scope="col">合計金額</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <th scope="row"><%= group.id %></th>
+              <td><%= link_to group.group_name ,"/admin/groups/#{group.id}"%></td>
+              <td><%= group.representative_name %></td>
+              <td>販売品目</td>
+              <td><%= group.representative_telephone_number %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="col-xs-1"></div>
+</div>

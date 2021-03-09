@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>注文情報確認</h4></div>
+  <div class="col-xs-8"></div>
+</div>
+<br>
+<%= form_with model: @request, url: public_request_path(@request.id), method: :patch,local: true do |f| %>
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-7">
+  <h5>出店情報</h5>
+      <table class="table table-brequested">
+        <tr>
+          <th>団体名</th>
+          <td><%= @request.group.group_name %></td>
+        </tr>
+        <tr>
+          <th>販売品目</th>
+          <td><%= @request.item_for_sale %></td>
+        </tr>
+        <tr>
+          <th>出店日</th>
+          <td><%= @request.date %></td>
+        </tr>
+      </table>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+      <h5>レンタル品申請内容</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">商品名</th>
+            <th scope="col">1泊2日料金</th>
+            <th scope="col">1日追加料金</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= cart_item.item.name %></td>
+              <td><%= (cart_item.item.price.to_i*1.10).floor %></td>
+              <td><%= (cart_item.item.add_price.to_i*1.10).floor %></td>
+              <td><%= cart_item.item_amount %></td>
+              <td><%= ((cart_item.item.price.to_i*1.10 + cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-5">
+  <h5>ガス申請内容</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ガス種類</th>
+            <th scope="col">数量</th>
+            <th scope="col">価格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @gas_requests.each do |gas_request| %>
+            <tr>
+              <td><%= gas_request.gase.name %></td>
+              <td><%= gas_request.gas_amount %></td>
+              <td><%= ((gas_request.gase.price * gas_request.gas_amount)*1.10).floor %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3">
+     <table class="table table-bordered">
+        <tr>
+          <th>合計金額</th>
+          <td><%= @total_payment %></td>
+        </tr>
+     </table>
+  </div>
+
+  <div class="col-xs-1"></div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <br>
+        <%= f.hidden_field :group_id, :value => current_group.id %>
+        <%= f.hidden_field :total_payment, :value => @total_payment %>
+        <div class="text-center">
+          <%= f.submit '注文を確定する' %>
+        </div>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+
+<% end %>

@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3"><h4>持ち込み機材登録/一覧</h4></div>
+  <div class="col-xs-8"></div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+       <%= form_for(@bring_in_equipment, url: public_bring_in_equipments_path) do |f| %>
+       <table class="table">
+         <tr>
+            <th class="col-xs-3">機材名称</th>
+            <td><%= f.text_field :name %></td>
+         </tr>
+         <tr>
+            <th>消費電力</th>
+            <td>
+              <%= f.radio_button :power_consumption_option,1%> あり <%= f.text_field :power_consumption %> W
+              <br>
+              <%= f.radio_button :power_consumption_option,0%> なし (0 W)
+            </td>
+         </tr>
+         <tr>
+            <th>個数</th>
+            <td>
+              <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '-- 選択してください --'} %>
+            </td>
+          </tr>
+
+       </table>
+       <div class="col-xs-10"></div>
+       <div class="col-xs-1">
+         <%= f.submit '新規登録'%>
+       </div>
+       <% end %>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">持ち込み機材</th>
+            <th scope="col">1台あたり消費電力 (W)</th>
+            <th scope="col">個数</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bring_in_equipments.each do |bring_in_equipment| %>
+            <tr>
+              <td><%= bring_in_equipment.name %></td>
+              <td>
+              	<% if bring_in_equipment.power_consumption.to_i == 0.to_i %>
+              	  -
+              	<% else %>
+              	  <%= bring_in_equipment.power_consumption.to_i %> W
+                <% end %>
+              </td>
+              <td><%= bring_in_equipment.amount%></td>
+              <td>
+                <div class="col-xs-8">
+                  <div style = "display:inline-flex">
+                    <%= link_to '編集する', edit_public_bring_in_equipment_path(bring_in_equipment.id), class: 'fbtn' %>
+                    <%= button_to '削除する', public_bring_in_equipment_path(bring_in_equipment.id), method: :delete, data: {confirm: 'この宛先を削除しますか？'}, class: 'fbtn' %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="d-flex text-center">
+	  <div style="display:inline-flex">
+	    <%= link_to 'レンタル品一覧', "/public/items" %>
+       </div>
+    </div>
+  </div>
+</div>

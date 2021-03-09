@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3"><h4><%= "#{@group.group_name}""の登録情報" %></h4></div>
+  <div class="col-xs-7"></div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+   <div class="col-xs-1"></div>
+     <div class="col-xs-10">
+		<table class="table table-borderless">
+		  <tr>
+		  	<th class="col-xs-2">顧客ID</th>
+		  	<td>顧客ID:  <%= @group.id %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>代表者氏名</th>
+		  	<td><%= @group.representative_name %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>代表者フリガナ</th>
+		  	<td><%= @group.representative_name_kana %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>代表者電話番号</th>
+		  	<td><%= @group.representative_telephone_number %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>代表者メールアドレス</th>
+		  	<td><%= @group.email %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>副代表者氏名</th>
+		  	<td><%= @group.subdelegate_name %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>副代表者フリガナ</th>
+		  	<td><%= @group.subdelegate_name_kana %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>副代表者電話番号</th>
+		  	<td><%= @group.subdelegate_telephone_number %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>副代表者メールアドレス</th>
+		  	<td><%= @group.subdelegate_email %></td>
+		  </tr>
+
+		</table>
+
+		<div style="display:inline-flex">
+		  <%= link_to "編集する","/admin/groups/#{@group.id}/edit" %>
+		  申請内容を確認する
+		</div>
+     </div>
+   <div class="col-xs-1"></div>
+</div>

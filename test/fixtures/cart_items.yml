@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_id: 1
+  gas_id: 1
+  bring_in_id: 1
+  customer_id: 1
+  item_amount: 1
+  gas_amount: 1
+  bring_in_amount: 1
+
+two:
+  item_id: 1
+  gas_id: 1
+  bring_in_id: 1
+  customer_id: 1
+  item_amount: 1
+  gas_amount: 1
+  bring_in_amount: 1

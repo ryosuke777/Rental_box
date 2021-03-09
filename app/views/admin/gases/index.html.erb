@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-2"></div>
+  <div class="col-xs-3"><h4>ガス一覧・追加</h4></div>
+  <div class="col-xs-7"></div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+      <%= form_for(@gase,url:admin_gases_path) do |f| %>
+      <th>
+        <td>ガス名称</td>
+          <td><%= f.text_field :name %></td>
+      </th>
+        <br>
+        ガス容量 (kg)<%= f.text_field :amount %>
+        <br>
+        価格(税抜)<%= f.text_field :price %>
+        <%= f.radio_button :is_active,1%> 有効
+        <%= f.radio_button :is_active,0%> 無効
+        <%= f.submit "追加"%>
+      <% end %>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-xs-1">名称</th>
+            <th scope="col" class="col-xs-1">ガス量 (kg)</th>
+            <th scope="col" class="col-xs-1">価格 (税込)</th>
+            <th scope="col" class="col-xs-1">状態</th>
+            <th scope="col" class="col-xs-2"></th>
+          </tr>
+        </thead>
+
+        <% @gases.each do |gase| %>
+        <tr>
+          <td><%= gase.name %></td>
+          <td><%= gase.amount %></td>
+          <td><%= ((gase.price.to_i)*1.10).floor %></td>
+          <td>
+        		<% if gase.is_active == true %>
+      			有効
+      		<% else %>
+      			無効
+      		<% end %>
+          </td>
+          <td><%= link_to "編集", edit_admin_gase_path(gase.id) %></td>
+        <% end %>
+      </table>
+    </div>
+  <div class="col-xs-2"></div>
+</div>
