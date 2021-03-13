@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     namespace :public do
 	    get '/' => 'homes#top'
 	    get '/about' => 'homes#about'
+
+	    get 'items/search/:id' => 'items#search'
 	    resources :items, only: [:index, :show]
 
 	    get 'groups/sign_up' => 'registrations#new'

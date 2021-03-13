@@ -46,7 +46,16 @@
             <tr>
               <td><%= cart_item.item.name %></td>
               <td><%= (cart_item.item.price.to_i*1.10).floor %></td>
-              <td><%= (cart_item.item.add_price.to_i*1.10).floor %></td>
+              <td>
+
+  <% @request = Request.find_by(group_id: current_group.id) %>
+
+  <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
+    <% cart_item.item.add_price = 0 %>
+  <% end%>
+
+                <%= (cart_item.item.add_price.to_i*1.10).floor %>
+              </td>
               <td><%= cart_item.item_amount %></td>
               <td><%= ((cart_item.item.price.to_i*1.10 + cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
             </tr>

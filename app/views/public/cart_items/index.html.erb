@@ -41,7 +41,21 @@
                 <% end %>
               </td>
               <td><%= (cart_item.item.price.to_i*1.10).floor %></td>
-              <td><%= (cart_item.item.add_price.to_i*1.10).floor %></td>
+              <td>
+
+
+  <% @request = Request.find_by(group_id: current_group.id) %>
+
+  <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
+    <% cart_item.item.add_price = 0 %>
+  <% end%>
+
+
+
+                <%= (cart_item.item.add_price.to_i*1.10).floor %>
+              </td>
+
+
               <td><%= ((cart_item.item.price.to_i*1.10+cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
               <td><%= button_to '削除する', public_cart_item_path(cart_item.id), method: :delete, data: {confirm: 'この商品をカートから削除しますか？'}, class: 'fbtn' %></td>
             </tr>

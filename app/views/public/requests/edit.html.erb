@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-2"><h4>申請内容</h4></div>
-  <div class="col-xs-8">
-    <p id="notice"><%= notice %></p>
-  </div>
+  <div class="col-xs-2"><h4>申請内容変更</h4></div>
+  <div class="col-xs-8"></div>
 </div>
 
 <div class="row">
   <div class="col-xs-1"></div>
   <div class="col-xs-7 requests">
   <h5>◆ 出店情報</h5>
+    <%= form_with model: @request, url:public_request_path, method: :patch,local: true do |f| %>
+    <%= f.hidden_field :group_id, :value => current_group.id %>
       <table class="table table-noborder">
         <tr>
           <th>団体名</th>
@@ -17,13 +17,19 @@
         </tr>
         <tr>
           <th>販売品目</th>
-          <td><%= @request.item_for_sale %></td>
+          <td><%= f.text_field :item_for_sale %></td>
         </tr>
         <tr>
           <th>出店日</th>
-          <td><%= @request.date %></td>
+	      <td>
+	    	   <p><%= f.radio_button :date_option,0%> 10/23(土)</p>
+	    	   <p><%= f.radio_button :date_option,1%> 10/24(日)</p>
+	    	   <p><%= f.radio_button :date_option,2%> 10/23(土),10/24(日) 両日</p>
+	    	   <div class = "submit"><%= f.submit '申請内容を変更する' %></div>
+	      </td>
         </tr>
       </table>
+    <% end %>
   </div>
 </div>
 
@@ -31,7 +37,7 @@
 <div class="row">
   <div class="col-xs-1"></div>
     <div class="col-xs-7">
-      <h5>◆ レンタル品申請内容</h5>
+      <h5>◆ レンタル品申請内容  <%= link_to "レンタル品を変更する", public_cart_items_path %></h5>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -61,7 +67,7 @@
 <div class="row">
   <div class="col-xs-1"></div>
   <div class="col-xs-5">
-  <h5>◆ ガス申請内容</h5>
+  <h5>◆ ガス申請内容 <%= link_to "ガス申請内容を変更する", public_gas_requests_path %></h5>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -81,7 +87,41 @@
         </tbody>
       </table>
   </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-5">
+  <h5>◆ 持ち込み機材 <%= link_to "持ち込み機材を変更する", public_bring_in_equipments_path %></h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">持ち込み機材</th>
+            <th scope="col">個数</th>
+            <th scope="col">1台あたり消費電力 (W)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bring_in_equipments.each do |bring_in_equipment| %>
+            <tr>
+              <td><%= bring_in_equipment.name %></td>
+              <td><%= bring_in_equipment.amount%></td>
+              <td>
+              	<% if bring_in_equipment.power_consumption.to_i == 0.to_i %>
+              	  -
+              	<% else %>
+              	  <%= bring_in_equipment.power_consumption.to_i %> W
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
+</div>
+
+
 
 <div class="row">
   <div class="col-xs-1"></div>
@@ -104,7 +144,7 @@
       <br>
 
         <div class="text-center">
-        <%= link_to "申請内容を変更する",edit_public_request_path %>
+
         </div>
     </div>
   <div class="col-xs-1"></div>

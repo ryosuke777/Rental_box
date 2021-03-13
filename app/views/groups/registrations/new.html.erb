@@ -12,7 +12,7 @@
   <div class="row">
      <div class = "field col-xs-1"></div>
      <div class = "field col-xs-2">
-       <p>名前</p>
+       <p>出店団体</p>
      </div>
      <div class = "field col-xs-1">
        <%= f.label :"団体名" %>
@@ -35,7 +35,7 @@
        <p>代表者氏名</p>
      </div>
      <div class = "field col-xs-1">
-       <%= f.label :"代表者氏名" %>
+       <%= f.label :"代表者" %>
      </div>
      <div class = "field col-xs-2">
        <%= f.text_field :representative_name, autofocus: true, autocomplete: "代表者氏名" %>
@@ -73,25 +73,22 @@
 
   <div class="row">
      <div class = "field col-xs-1"></div>
-     <div class = "field col-xs-3">
+     <div class = "field col-xs-2">
        <p>副代表者氏名</p>
      </div>
-     <div class = "field col-xs-8">
+     <div class = "field col-xs-1">
+       <%= f.label :"副代表者" %>
+     </div>
+     <div class = "field col-xs-2">
         <%= f.text_field :subdelegate_name, autofocus: true, autocomplete: "副代表者氏名" %>
      </div>
-  </div>
-
-
-  <div class="row">
-     <div class = "field col-xs-1"></div>
-     <div class = "field col-xs-3">
-       <p>副代表者カナ</p>
+     <div class = "field col-xs-1">
+       <%= f.label :"副代表者カナ" %>
      </div>
-     <div class = "field col-xs-8">
+     <div class = "field col-xs-5">
         <%= f.text_field :subdelegate_name_kana, autofocus: true, autocomplete: "副代表者カナ" %>
      </div>
   </div>
-
 
   <div class="row">
      <div class = "field col-xs-1"></div>
@@ -137,14 +134,13 @@
 
    <%= f.hidden_field :is_deleted, :value => false %>
 
-
+<br>
 
   <div class="row">
      <div class = "field col-xs-1"></div>
      <div class = "field col-xs-3">
       <div class="actions">
-        <%= f.submit "Sign up" %>
-        <%= render "groups/shared/links" %>
+        <%= f.submit "新規登録" %>
       </div>
      </div>
   </div>

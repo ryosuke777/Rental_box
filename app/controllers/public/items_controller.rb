@@ -6,6 +6,12 @@ class Public::ItemsController < ApplicationController
       @items = Item.all
 	end
 
+      def search
+      @genres = Genre.all
+      @genre = Genre.find(params[:id])
+      @items = Item.where(genre: @genre.id)
+      end
+
 	def show
       # @cart_items = current_cart.cart_items
       @genres = Genre.all

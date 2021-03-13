@@ -3,7 +3,7 @@
     <div class="col-xs-10">
 	<h5><%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments"%></h5>
 
-	<h4><%= @items.count %>件のレンタル品があります。</h4>
+	<h4>"<%= @genre.name %>"で<%= @items.count %>件のレンタル品があります。</h4>
 
 		<a class = "genre"><%= link_to "すべて", "/public/items" %></a>
 		<% @genres.each do |genre| %>

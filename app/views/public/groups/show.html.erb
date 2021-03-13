@@ -50,12 +50,12 @@
 	  <tr>
 	  	<th>副代表者フリガナ</th>
 	  	<td><%= @group.subdelegate_name_kana %></td>
-	  </tr>		  
+	  </tr>
 
 	  <tr>
 	  	<th>副代表者電話番号</th>
 	  	<td><%= @group.subdelegate_telephone_number %></td>
-	  </tr>		  
+	  </tr>
 
 	  <tr>
 	  	<th>副代表者メールアドレス</th>
@@ -71,6 +71,6 @@
   <div class="col-xs-4 form-group">
 
     <br>
-	<label>注文履歴</label>
+	<%= link_to "申請内容を確認する", public_request_path(current_group.id)  %>
   </div>
 </div>

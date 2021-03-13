@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3"><h4>持ち込み機材登録/一覧</h4></div>
+  <div class="col-xs-8"></div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+       <%= form_for(@bring_in_equipment, url: public_bring_in_equipment_path) do |f| %>
+       <table class="table">
+         <tr>
+            <th class="col-xs-3">機材名称</th>
+            <td><%= f.text_field :name %></td>
+         </tr>
+         <tr>
+            <th>消費電力</th>
+            <td>
+              <%= f.radio_button :power_consumption_option,1%> あり <%= f.text_field :power_consumption %> W
+              <br>
+              <%= f.radio_button :power_consumption_option,0%> なし (0 W)
+            </td>
+         </tr>
+         <tr>
+            <th>個数</th>
+            <td>
+              <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '-- 選択してください --'} %>
+            </td>
+          </tr>
+
+       </table>
+       <div class="col-xs-10"></div>
+       <div class="col-xs-1">
+        <%= f.hidden_field :group_id, :value => current_group.id %>
+         <%= f.submit '新規登録'%>
+       </div>
+       <% end %>
+    </div>
+  <div class="col-xs-1"></div>
+</div>

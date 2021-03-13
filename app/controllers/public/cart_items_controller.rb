@@ -12,6 +12,7 @@ class Public::CartItemsController < ApplicationController
 
 
   def create
+
     @current_cart_items = CartItem.find_by(group_id: current_group.id, item_id: params[:cart_item][:item_id])
 
     if @current_cart_item.nil?
@@ -25,6 +26,16 @@ class Public::CartItemsController < ApplicationController
        @cart_item = @current_cart_items
        @cart_item.item_amount += params[:cart_item][:item_amount].to_i
     end
+
+
+
+   @request = Request.find_by(group_id: current_group.id)
+# binding.pry
+   if @request.date == "10/23(土)"||@request.date == "10/24(日)"
+     @cart_item.item.add_price = 0
+   end
+
+# binding.pry
 
       @cart_item.save
       redirect_to "/public/cart_items"

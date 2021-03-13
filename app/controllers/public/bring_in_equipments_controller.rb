@@ -39,7 +39,7 @@ class Public::BringInEquipmentsController < ApplicationController
 
     private
     def bring_in_equipment_params
-      params.require(:bring_in_equipment).permit(:name, :power_consumption, :power_consumption_option, :amount)
+      params.require(:bring_in_equipment).permit(:name, :power_consumption, :power_consumption_option, :amount, :group_id)
     end
 
 

@@ -1,11 +1,5 @@
 <div class="row">
   <div class="col-xs-1"></div>
-    <div class="col-xs-3">
-		<h4>ジャンル検索</h4>
-		<% @genres.each do |genre| %>
-		  <p><%= genre.name %></p>
-		<% end %>
-	</div>
 
     <div class="col-xs-7">
       <br>
@@ -16,7 +10,12 @@
 			<br>
 			<h4><%= @item.name %></h4>
 			<p><%= @item.introduction %></p>
-			<p>¥<%= (@item.price.to_i*1.10).floor %>(税込)</p>
+			 <ul>
+			   <li><span class=”dan”>ガス燃費</span><span class=”dan2″> <%= @item.fuel_economy %> kg/h</span>
+			   <li><span class=”dan”>消費電力</span><span class=”dan2″> <%= @item.power_consumption %> W</span>
+			   <li><span class=”dan”>1泊2日</span><span class=”dan2″> ¥<%= (@item.price.to_i*1.10).floor %> (税込)</span>
+			   <li><span class=”dan”>追加1日</span><span class=”dan2″> ¥<%= (@item.add_price.to_i*1.10).floor %> (税込)</span>
+			 </ul>
 			<br>
 			<%= form_for(@cart_item, url:public_cart_items_path) do |f| %>
 			  <%= f.hidden_field :item_id, :value => @item.id %>

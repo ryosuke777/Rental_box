@@ -1,3 +1,27 @@
 // Place all the styles related to the public/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+ul {
+list-style:none;
+padding-left: 0px;
+}
+
+p.item_name {
+margin: 0px;
+}
+
+a.genre {
+display:inline-block;
+margin-right: 15px;
+}
+
+span.dan {
+float:left;
+}
+
+span.dan2 {
+display: block;
+margin-left: 110px;
+}
