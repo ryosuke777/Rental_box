@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :groups, controllers: {
         sessions: 'groups/sessions'
       }
-
+  root 'public/homes#top'
     namespace :admin do
 	    get 'homes/top'
 	    get 'admin/sign_in' => 'sessions#new'
