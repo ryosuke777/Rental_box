@@ -1,9 +1,13 @@
 <div class="row">
   <div class="col-xs-1"></div>
     <div class="col-xs-10">
-	<h5><%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments"%></h5>
+	<p class = "bring_in">
+		<%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments",class: "Editlink"%>
+	</p>
 
-	<h4><%= @items.count %>件のレンタル品があります。</h4>
+	<p class = "item_count">
+		<a class= "count"><%= @items.count %></a>件のレンタル品があります。
+	</p>
 
 		<a class = "genre"><%= link_to "すべて", "/public/items" %></a>
 		<% @genres.each do |genre| %>
