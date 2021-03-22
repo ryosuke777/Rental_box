@@ -1,3 +1,60 @@
 // Place all the styles related to the admin/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.item_image {
+  object-fit: contain;
+}
+
+.manual_video {
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.manual {
+  padding: 5px 10px;
+  background-color: #33CCFF;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 8px;
+}
+
+.video {
+  padding: 5px 10px;
+  background-color: #FF3333;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 8px;
+}
+
+
+.manual_video_index {
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.manual_index {
+  padding: 1px 3px;
+  background-color: #33CCFF;
+  font-size: 10px;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 2px;
+}
+
+.video_index {
+  padding: 1px 3px;
+  background-color: #FF3333;
+  font-size: 10px;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 2px;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_082228) do
+ActiveRecord::Schema.define(version: 2021_03_21_052236) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -106,9 +106,18 @@ ActiveRecord::Schema.define(version: 2021_03_06_082228) do
     t.boolean "fuel_economy_option"
   end
 
+  create_table "order_gases", force: :cascade do |t|
+    t.integer "gase_id"
+    t.integer "request_id"
+    t.integer "price"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "order_id"
+    t.integer "request_id"
     t.integer "price"
     t.integer "amount"
     t.datetime "created_at", null: false
@@ -122,6 +131,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_082228) do
     t.integer "total_payment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
   end
 
 end

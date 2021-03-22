@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gase_id: 1
+  request_id: 1
+  price: 1
+  amount: 1
+
+two:
+  gase_id: 1
+  request_id: 1
+  price: 1
+  amount: 1

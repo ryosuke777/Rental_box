@@ -19,21 +19,11 @@ class Public::GasRequestsController < ApplicationController
        end
       @operating_time = 0
 
-
-
-      # @gases = Gase.where(is_active: true)
-      # @gas_request = GasRequest.new
-      # @gas_requests = GasRequest.all
-      # @total_amount = 0
-      #  @gas_requests.each do |gas_request|
-      #  	@total_amount += (gas_request.gase.amount.to_i) * (gas_request.gas_amount.to_i)
-      #  end
 	end
 
 
 
 	def create
-
 
 	    @current_gas_requests = GasRequest.find_by(group_id: current_group.id, gase_id: params[:gas_request][:gase_id])
 	    if @current_gas_request.nil?
@@ -43,23 +33,23 @@ class Public::GasRequestsController < ApplicationController
 	      @gas_request.gas_amount = params[:gas_request][:gas_amount].to_i
 	    end
 
-	    # @test = GasRequest.find_by(group_id: current_group.id, gase_id: params[:gas_request][:gase_id]).gas_amount
-
 	    if current_group.gas_requests.find_by(gase_id: params[:gas_request][:gase_id]).present?
 	       @gas_request = @current_gas_requests
 	       @gas_request.gas_amount = params[:gas_request][:gas_amount].to_i
 	    end
 
-	    @gas_request.save
-	    redirect_to "/public/gas_requests"
+
+
+	    if params[:gas_request][:gas_amount].to_i == 0
+	      @gas_request.destroy
+	      redirect_to "/public/gas_requests"
+	    else
+		  @gas_request.save
+		  redirect_to "/public/gas_requests"
+	    end
 
 
 
-
-		# @gas_request = GasRequest.new(gas_request_params)
-		# if @gas_request.save
-		#   redirect_to "/public/gases"
-	    # end
 	end
 
 
@@ -69,8 +59,15 @@ class Public::GasRequestsController < ApplicationController
 
 	def update
 		@gas_request = GasRequest.find(params[:id])
-		@gas_request.update(gas_request_params)
-		redirect_to "/public/gas_requests"
+
+	    if params[:gas_request][:gas_amount].to_i == 0
+	      @gas_request.destroy
+	      redirect_to "/public/gas_requests"
+	    else
+	      @gas_request.update(gas_request_params)
+	      redirect_to "/public/gas_requests"
+	    end
+
 	end
 
 

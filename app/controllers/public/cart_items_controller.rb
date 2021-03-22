@@ -27,6 +27,9 @@ class Public::CartItemsController < ApplicationController
        @cart_item.item_amount += params[:cart_item][:item_amount].to_i
     end
 
+    if @cart_item.item_amount == 0
+      @cart_item.destroy
+    end
 
 
    @request = Request.find_by(group_id: current_group.id)
@@ -42,9 +45,14 @@ class Public::CartItemsController < ApplicationController
   end
 
 	def update
+
     cart_item = CartItem.find(params[:id])
 
+    if params[:cart_item][:item_amount].to_i == 0
+      cart_item.destroy
+    else
       cart_item.update(cart_items_params)
+    end
 
     redirect_to public_cart_items_path
 	end

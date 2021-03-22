@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-2"><h4>商品一覧</h4></div>
+  <div class="col-xs-2"><h4>レンタル品一覧</h4></div>
   <div class="col-xs-6"></div>
   <a class="glyphicon glyphicon-plus ol-xs-1" href= "/admin/items/new"></a>
   <div class="col-xs-1"></div>
@@ -12,10 +12,11 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">商品ID</th>
-            <th scope="col">商品名</th>
-            <th scope="col">税抜価格</th>
-            <th scope="col">追加1日</th>
+            <th scope="col">レンタル品ID</th>
+            <th scope="col">レンタル品名</th>
+            <th scope="col">ジャンル</th>
+            <th scope="col">1泊2日(税抜)</th>
+            <th scope="col">追加1日(税抜)</th>
           </tr>
         </thead>
 
@@ -24,6 +25,7 @@
             <tr>
               <th scope="row"><%= item.id %></th>
               <td><%= link_to item.name,"/admin/items/#{item.id}"%></td>
+              <td><%= item.genre.name %></td>
               <td><%= item.price %></td>
               <td><%= item.add_price %></td>
             </tr>

@@ -6,22 +6,25 @@
 <br>
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-10">
-    <table class="table table-noborder">
+  <div class="col-xs-6">
     <%= form_with model: @request, url:public_requests_path, method: :post,local: true do |f| %>
     <%= f.hidden_field :group_id, :value => current_group.id %>
-
+    <table class="table table-noborder">
         <tr>
           <th>販売品目</th>
           <td><%= f.text_field :item_for_sale, placeholder: "例：焼きそば" %></td>
         </tr>
         <tr>
+          <th>パンフレット掲載用画像</th>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
           <th>出店日</th>
-        <td>
-           <p><%= f.radio_button :date_option,0%> 10/23(土)</p>
-           <p><%= f.radio_button :date_option,1%> 10/24(日)</p>
-           <p><%= f.radio_button :date_option,2%> 10/23(土),10/24(日) 両日</p>
-        </td>
+          <td>
+             <p><%= f.radio_button :date_option,0%> 10/23(土)</p>
+             <p><%= f.radio_button :date_option,1%> 10/24(日)</p>
+             <p><%= f.radio_button :date_option,2%> 10/23(土),10/24(日) 両日</p>
+          </td>
         </tr>
       </table>
        <div class="text-center">
@@ -29,4 +32,5 @@
        </div>
     <% end %>
   </div>
+  <div class="col-xs-5"></div>
 </div>

@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-2"><h4>レンタルかご</h4></div>
+  <div class="col-xs-2">
+    <h4>レンタルかご</h4>
+  </div>
   <div class="col-xs-5"></div>
   <div class="col-xs-1">
         <p><%= button_to 'カートを空にする', public_cart_items1_delete_all_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %></p>
@@ -16,7 +18,7 @@
           <tr>
             <th scope="col">レンタル品名</th>
             <th scope="col">数量</th>
-            <th scope="col">消費電力</th>
+            <th scope="col">消費電力 (W)</th>
             <th scope="col">1泊2日料金(税込)</th>
             <th scope="col">1日追加料金</th>
             <th scope="col">小計</th>
@@ -27,9 +29,9 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td><%= cart_item.item.name %></td>
-              <td>
+              <td class = "item_amount">
                 <%= form_for(cart_item, url: public_cart_item_path(cart_item.id)) do |f| %>
-                  <%= f.text_field :item_amount %>
+                  <%= f.text_field :item_amount, :class => 'item_amount_field' %>
                   <%= f.submit "更新" %>
                 <% end %>
               </td>
@@ -40,24 +42,19 @@
                 <%= cart_item.item.power_consumption %>
                 <% end %>
               </td>
-              <td><%= (cart_item.item.price.to_i*1.10).floor %></td>
+              <td>¥ <%= (cart_item.item.price.to_i*1.10).floor %></td>
               <td>
+                  <% @request = Request.find_by(group_id: current_group.id) %>
 
-
-  <% @request = Request.find_by(group_id: current_group.id) %>
-
-  <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
-    <% cart_item.item.add_price = 0 %>
-  <% end%>
-
-
-
-                <%= (cart_item.item.add_price.to_i*1.10).floor %>
+                  <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
+                    <% cart_item.item.add_price = 0 %>
+                  <% end%>
+                ¥ <%= (cart_item.item.add_price.to_i*1.10).floor %>
               </td>
 
 
-              <td><%= ((cart_item.item.price.to_i*1.10+cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
-              <td><%= button_to '削除する', public_cart_item_path(cart_item.id), method: :delete, data: {confirm: 'この商品をカートから削除しますか？'}, class: 'fbtn' %></td>
+              <td>¥ <%= ((cart_item.item.price.to_i*1.10+cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
+              <td><%= button_to '削除する', public_cart_item_path(cart_item.id), method: :delete, data: {confirm: 'このレンタル品をカートから削除しますか？'}, class: 'fbtn' %></td>
             </tr>
           <% end %>
           </tbody>
@@ -90,8 +87,8 @@
         </table>
       </div>
 
-      <div class="col-xs-1"></div>
-      <div class="col-xs-2">
+
+      <div class="col-xs-3">
           <table class="table table-bordered">
             </tbody>
               <thead>
@@ -109,8 +106,11 @@
                     <% end %>
 
                     <% @total_power = 0 %> <!-- 初期値 -->
-                    <% @total_power = @sum_of_cart_items.to_i + @sum_of_bring_in_equipments %> 
-                    <%= @total_power %>
+                    <% @total_power = @sum_of_cart_items.to_i + @sum_of_bring_in_equipments %>
+                    <%= @total_power %> W
+                    <% if @total_power >= 2000 %>
+                     <p class = "over_capacity">2000 W を超えています</p>
+                    <% end %>
                   </td>
                 </tr>
                 <tr>
@@ -120,7 +120,7 @@
                     <% @cart_items.each do |cart_item| %>
                       <% @sum += ((cart_item.item.price.to_i + cart_item.item.add_price.to_i )*1.10 ).floor * (cart_item.item_amount.to_i) %>
                     <% end %>
-                    <%= @sum %>
+                    ¥ <%= @sum %>
                   </td>
                 </tr>
               </thead>
@@ -131,7 +131,10 @@
 
   <div class="text-center">
    <%= link_to 'レンタル品を探す',"/public/items" %>
-   <%= link_to '次: ガス注文に進む',"/public/gas_requests" %>
+   <% if @total_power <= 2000 %>
+    <%= link_to '次: ガス注文に進む',"/public/gas_requests" %>
+   <% else %>
+    <%= link_to 'レンタル品、持ち込み機材の消費電力合計を2000 W以下にしてください',"/public/cart_items" %>
+   <% end %>
   </div>
-<!--   <div class="col-xs-1"></div> -->
 </div>

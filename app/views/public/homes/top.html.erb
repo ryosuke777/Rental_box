@@ -1,5 +1,10 @@
 <div class="text-center">
-<h1><%= link_to "模擬店出店登録を始める", new_group_registration_path %></h1>
+	    <p id="notice"><%= notice %></p>
+<% if group_signed_in? %>
+  <h1><%= link_to "模擬店出店登録を始める", new_public_request_path %></h1>
+<% else %>
+  <h1><%= link_to "模擬店出店登録を始める", new_group_registration_path %></h1>
+<% end %>
 <br>
 <div><p>既に登録済みの方</p></div>
 <div><%= link_to "こちら", new_group_session_path %>からログインしてください</div>

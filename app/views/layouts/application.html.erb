@@ -24,13 +24,13 @@
             <li><a><%= "ようこそ、""#{current_group.group_name}" "さん！" %></a></li>
             <li><%= link_to "トップページ", public_path %></li>
             <li><%= link_to "マイページ", public_group_path(current_group.id) %></li>
-            <li><a href="/public/items">商品一覧</a></li>
+            <li><a href="/public/items">レンタル品一覧</a></li>
             <li><a href="/public/cart_items">カート</a></li>
             <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/groups/sign_out"> ログアウト</a></li>
           <% elsif admin_signed_in? %>
             <li><a>管理者ログイン中！</a><li>
             <li><%= link_to "トップページ", public_path %></li>
-            <li><a href="/admin/items"> 商品一覧</a></li>
+            <li><a href="/admin/items"> レンタル品一覧</a></li>
             <li><a href="/admin/groups">会員一覧</a></li>
             <li><a href="/admin/gases">ガス一覧</a></li>
             <li><a href = "/admin/orders" >注文履歴一覧</a></li>
@@ -40,7 +40,7 @@
             <li><a>未ログイン</a></li>
                        <li><%= link_to "トップページ", public_path %></li>
             <li><a href="/public/about"> About</a></li>
-            <li><a href="/public/items"> 商品一覧</a></li>
+            <li><a href="/public/items"> レンタル品一覧</a></li>
             <li><a class="glyphicon glyphicon-edit sign_up" href="/groups/sign_up"> 新規登録</a></li>
             <li><a class="glyphicon glyphicon-log-in sign_in" href="/groups/sign_in"> ログイン(会員)</a></li>
             <li><a class="glyphicon glyphicon-log-in sign_in" href="/admins/sign_in"> ログイン(管理者)</a></li>

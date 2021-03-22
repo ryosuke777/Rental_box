@@ -1,9 +1,15 @@
 <div class="row">
   <div class="col-xs-1"></div>
     <div class="col-xs-10">
-	<h5><%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments"%></h5>
+    <p class = "bring_in">
+     <% if group_signed_in? %>
+	    <%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments",class: "Editlink"%>
+     <% end %>
+    </p>
 
-	<h4>"<%= @genre.name %>"で<%= @items.count %>件のレンタル品があります。</h4>
+    <p class = "item_count">
+	    "<%= @genre.name %>"で<a class= "count"><%= @items.count %></a>件のレンタル品があります。
+    </p>
 
 		<a class = "genre"><%= link_to "すべて", "/public/items" %></a>
 		<% @genres.each do |genre| %>
@@ -15,11 +21,28 @@
 		<% @items.each do |item| %>
 		<div class="col-sm-3">
 		   <th>
-		     <p><%= attachment_image_tag item, :image, :fill, 50, 50, fallback: asset_path("no_image.jpg"), size: '100x100' %></p>
+		     <p><%= attachment_image_tag item, :image, fallback: asset_path("no_image.jpg"), size: '100x100' ,class: "item_image"%></p>
 		     <p class = "item_name"><%= link_to item.name,"/public/items/#{item.id}"%></p>
 			 <ul>
-			   <li><span class=”dan”>1泊2日</span><span class=”dan2″> ¥<%= item.price %></span>
-			   <li><span class=”dan”>追加1日</span><span class=”dan2″> ¥<%= item.add_price %></span>
+			   <li>
+			   	<span class=”dan”>1泊2日</span>
+			   	<span class=”dan2″> ¥<%= item.price %></span>
+			   </li>
+			   <li>
+			   	<span class=”dan”>追加1日</span>
+			   	<span class=”dan2″> ¥<%= item.add_price %></span>
+			   </li>
+
+ <div class= "manual_video_index">
+        <% if item.manual != false %>
+          <p class= "manual_index"><%= "説明書あり" %></p>
+        <% end %>
+
+        <% if item.video != false %>
+           <p class= "video_index"><%= "動画あり" %></p>
+        <% end %>
+ </div>
+
 			 </ul>
 		   </th>
 		</div>
