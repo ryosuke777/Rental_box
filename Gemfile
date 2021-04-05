@@ -78,6 +78,7 @@ gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'rails-i18n'
+gem "mimemagic", "~> 0.3.10"
 
 gem 'dotenv-rails'
 group :production do
