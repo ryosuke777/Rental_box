@@ -8,7 +8,7 @@
   <div class="col-xs-1"></div>
   <div class="col-xs-7 requests">
   <h5>◆ 出店情報</h5>
-    <%= form_with model: @request, url:public_request_path, method: :patch,local: true do |f| %>
+    <%= form_with model: @request, url:admin_request_path, method: :patch,local: true do |f| %>
     <%= f.hidden_field :group_id, :value => current_group.id %>
       <table class="table table-noborder">
         <tr>
@@ -42,8 +42,8 @@
         <thead>
           <tr>
             <th scope="col">レンタル品名</th>
-            <th scope="col">1泊2日料金</th>
-            <th scope="col">1日追加料金</th>
+            <th scope="col">1泊2日料金(税込)</th>
+            <th scope="col">1日追加料金(税込)</th>
             <th scope="col">数量</th>
             <th scope="col">小計</th>
           </tr>
@@ -73,7 +73,7 @@
           <tr>
             <th scope="col">ガス種類</th>
             <th scope="col">数量</th>
-            <th scope="col">価格</th>
+            <th scope="col">価格(税込)</th>
           </tr>
         </thead>
         <tbody>

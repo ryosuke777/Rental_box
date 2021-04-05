@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-xs-1"></div>
+  <div class="col-xs-2"></div>
   <div class="col-xs-2"><h4>マイページ</h4></div>
-  <div class="col-xs-9"></div>
+  <div class="col-xs-8"></div>
 </div>
 
 <div class="row">
-  <div class="col-xs-1"></div>
+  <div class="col-xs-2"></div>
      <div class="col-xs-2">
      	<h4>登録情報</h4>
      </div>
@@ -19,8 +19,8 @@
 
 
 <div class="row">
-  <div class="col-xs-1"></div>
-    <div class="col-xs-9">
+  <div class="col-xs-2"></div>
+    <div class="col-xs-6">
 	<table class="table table-noborder">
 	  <tr>
 	  	<th>代表者氏名</th>
@@ -67,10 +67,7 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-1"></div>
-  <div class="col-xs-4 form-group">
-
-    <br>
-	<%= link_to "申請内容を確認する", public_request_path(current_group.id)  %>
+  <div class="col-xs-12 form-group">
+	<%= link_to "申請内容を確認する", public_request_path(current_group.id),class: "sink_button4" %>
   </div>
 </div>

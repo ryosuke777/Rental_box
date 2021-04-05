@@ -4,59 +4,43 @@
     <title>RentalBox</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
-
-<div class="row">
-<header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-      <nav class='nav navbar-nav navbar-left' >
-        <h3 class= "title" >Rental box</h3>
-      </nav>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <% if group_signed_in? %>
-            <li><a><%= "ようこそ、""#{current_group.group_name}" "さん！" %></a></li>
-            <li><%= link_to "トップページ", public_path %></li>
-            <li><%= link_to "マイページ", public_group_path(current_group.id) %></li>
-            <li><a href="/public/items">レンタル品一覧</a></li>
-            <li><a href="/public/cart_items">カート</a></li>
-            <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/groups/sign_out"> ログアウト</a></li>
-          <% elsif admin_signed_in? %>
-            <li><a>管理者ログイン中！</a><li>
-            <li><%= link_to "トップページ", public_path %></li>
-            <li><a href="/admin/items"> レンタル品一覧</a></li>
-            <li><a href="/admin/groups">会員一覧</a></li>
-            <li><a href="/admin/gases">ガス一覧</a></li>
-            <li><a href = "/admin/orders" >注文履歴一覧</a></li>
-            <li><a href="/admin/genres">ジャンル一覧</a></li>
-            <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/admins/sign_out"> ログアウト</a></li>
-          <% else %>
-            <li><a>未ログイン</a></li>
-                       <li><%= link_to "トップページ", public_path %></li>
-            <li><a href="/public/about"> About</a></li>
-            <li><a href="/public/items"> レンタル品一覧</a></li>
-            <li><a class="glyphicon glyphicon-edit sign_up" href="/groups/sign_up"> 新規登録</a></li>
-            <li><a class="glyphicon glyphicon-log-in sign_in" href="/groups/sign_in"> ログイン(会員)</a></li>
-            <li><a class="glyphicon glyphicon-log-in sign_in" href="/admins/sign_in"> ログイン(管理者)</a></li>
-        <% end %>
-        </ul>
-      </nav>
-    </div>
-   </header>
- </div>
-   <br><br><br><br>
-
-
-
-
-
-
+    <header>
+      <div class="header">
+          <div>
+            <h3 class= "title" >Rental box</h3>
+          </div>
+              <% if group_signed_in? %>
+                <div><%= "ようこそ、""#{current_group.group_name}" "さん！" %></div>
+                <div><%= link_to "トップページ", public_path, class: "header_element" %></div>
+                <div><%= link_to "マイページ", public_group_path(current_group.id), class: "header_element" %></div>
+                <div><%= link_to "レンタル品一覧", public_items_path, class: "header_element"%></div>
+                <div><%= link_to "カート",public_cart_items_path, class: "header_element", id: "group_cart_item"  %></a></div>
+                <div><%= link_to "ログアウト",destroy_group_session_path,method: :delete,class: "glyphicon glyphicon-log-out logout header_element", id: "group_log-out"%></div>
+              <% elsif admin_signed_in? %>
+                <div><%= "管理者ログイン中!" %></div>
+                <div><%= link_to "トップページ", admin_homes_top_path, class: "header_element" %></div>
+                <div><%= link_to "レンタル品一覧", admin_items_path, class: "header_element" %></div>
+                <div><%= link_to "団体一覧", admin_groups_path, class: "header_element" %></div>
+                <div><%= link_to "ガス一覧", admin_gases_path, class: "header_element" %></div>
+                <div><%= link_to "ジャンル一覧", admin_genres_path, class: "header_element" %></div>
+                <div><%= link_to "注文リスト",admin_items_order_list_path, class: "header_element" %></div>
+                <div><%= link_to "ログアウト",destroy_admin_session_path,method: :delete ,class: "glyphicon glyphicon-log-out logout header_element"%></div>
+              <% else %>
+                <div>未ログイン</div>
+                <div><%= link_to "トップページ", public_path, class: "header_element" %></div>
+                <div><%= link_to "レンタル品一覧", public_items_path, class: "header_element" %></div>
+                <div><%= link_to "新規登録", new_group_registration_path, class: "glyphicon glyphicon-edit sign_up header_element" %></div>
+                <div><%= link_to "ログイン(public)", new_group_session_path, class: "glyphicon glyphicon-log-in sign_in header_element" %></div>
+                <div><%= link_to "ログイン(admin)", new_admin_session_path, class: "glyphicon glyphicon-log-in sign_in header_element" %></div>
+            <% end %>
+      </div>
+    </header>
+    <br>
     <%= yield %>
   </body>
 </html>

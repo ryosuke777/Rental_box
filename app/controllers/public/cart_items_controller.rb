@@ -13,35 +13,38 @@ class Public::CartItemsController < ApplicationController
 
   def create
 
-    @current_cart_items = CartItem.find_by(group_id: current_group.id, item_id: params[:cart_item][:item_id])
+    if Request.where(group_id: current_group.id).present?
 
-    if @current_cart_item.nil?
-      @cart_item = current_group.cart_items.new(cart_items_params)
+        @current_cart_items = CartItem.find_by(group_id: current_group.id, item_id: params[:cart_item][:item_id])
+
+        if @current_cart_item.nil?
+          @cart_item = current_group.cart_items.new(cart_items_params)
+        else
+          @cart_item = @current_cart_items
+          @cart_item.item_amount += params[:cart_item][:item_amount].to_i
+        end
+
+        if current_group.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+           @cart_item = @current_cart_items
+           @cart_item.item_amount += params[:cart_item][:item_amount].to_i
+        end
+
+        if @cart_item.item_amount == 0
+          @cart_item.destroy
+        end
+
+        @request = Request.find_by(group_id: current_group.id)
+        if @request.date == "10/23(土)"||@request.date == "10/24(日)"
+          @cart_item.item.add_price = 0
+        end
+          @cart_item.save
+          redirect_to "/public/cart_items"
     else
-      @cart_item = @current_cart_items
-      @cart_item.item_amount += params[:cart_item][:item_amount].to_i
-    end
-
-    if current_group.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-       @cart_item = @current_cart_items
-       @cart_item.item_amount += params[:cart_item][:item_amount].to_i
-    end
-
-    if @cart_item.item_amount == 0
-      @cart_item.destroy
+      flash[:notice] = "出店内容を入力してください"
+      redirect_to new_public_request_path
     end
 
 
-   @request = Request.find_by(group_id: current_group.id)
-# binding.pry
-   if @request.date == "10/23(土)"||@request.date == "10/24(日)"
-     @cart_item.item.add_price = 0
-   end
-
-# binding.pry
-
-      @cart_item.save
-      redirect_to "/public/cart_items"
   end
 
 	def update

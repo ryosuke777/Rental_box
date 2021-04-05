@@ -2,23 +2,19 @@ class Public::BringInEquipmentsController < ApplicationController
 
 	def index
 	  @bring_in_equipment = BringInEquipment.new
-	    if params[:power_consumption_option] == "0"
-	      @bring_in_equipment.power_consumption = 0
-	    elsif params[:power_consumption_option] == "1"
-	      @bring_in_equipment.power_consumption = params[:power_consumption]
-	    end
-
 	  @bring_in_equipments = BringInEquipment.where(group_id: current_group.id)
 	end
 
 	def create
 	  @bring_in_equipment = BringInEquipment.new(bring_in_equipment_params)
 	  # @bring_in_equipment.group_id = current_group.id
-# binding.pry
 
-      @bring_in_equipment.save
-
-	  redirect_to "/public/bring_in_equipments"
+      if @bring_in_equipment.save
+        redirect_to "/public/bring_in_equipments"
+      else
+      	@bring_in_equipments = BringInEquipment.where(group_id: current_group.id)
+      	render 'index'
+      end
 	end
 
 	def edit
@@ -27,8 +23,11 @@ class Public::BringInEquipmentsController < ApplicationController
 
 	def update
 	  @bring_in_equipment = BringInEquipment.find(params[:id])
-	  @bring_in_equipment.update(bring_in_equipment_params)
-      redirect_to public_bring_in_equipments_path
+	  if @bring_in_equipment.update(bring_in_equipment_params)
+        redirect_to public_bring_in_equipments_path
+      else
+      	render 'edit'
+      end
 	end
 
 	def destroy

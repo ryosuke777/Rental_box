@@ -5,83 +5,83 @@
 </div>
 
 <%= form_for(@item, url:admin_items_path) do |f| %>
+
   <div class="row">
      <div class="col-xs-1"></div>
        <div class="col-xs-10">
+       <%= render 'groups/shared/error_messages2', model: f.object %>
           <table class="table table-borderless">
 
             <tr>
               <th>レンタル品名</th>
-              <td><%= f.text_field :name %></td>
+              <td><%= f.text_field :name ,id: "item_name"%></td>
             </tr>
-
 
             <tr>
               <th class="col-xs-2">レンタル品画像</th>
-              <td><%= f.attachment_field :image %></td>
+              <td>
+                <div class="item-image">
+                   <%= attachment_image_tag @item, :image, fallback: asset_path("no_image.jpg"), id: "img_prev", size: '300x225',class: "item_image"%>
+                </div>
+                <%= f.attachment_field :image %>
+              </td>
             </tr>
 
             <tr>
               <th>レンタル品説明</th>
-              <td><%= f.text_area :introduction %></td>
+              <td><%= f.text_area :introduction, class: "item_introduction", id: "item_introduction" %></td>
             </tr>
 
             <tr>
               <th class="col-xs-2">動画</th>
               <td>
-                <%= f.radio_button :video,1%> あり <%= f.text_field :video_url, :placeholder =>"動画URL" %>
+                <%= f.text_field :video_url, :placeholder =>"動画URL", id: "video_url" %>
                 <br>
-                <%= f.radio_button :video,0%> なし
+                <%= f.check_box :video, {class: "check_box", id: "video"}, 0, false %> なし
               </td>
             </tr>
 
             <tr>
               <th class="col-xs-2">説明書</th>
               <td>
-                <%= f.radio_button :manual,1%> あり <%= f.text_field :manual_url, :placeholder =>"説明書URL" %>
+                <%= f.text_field :manual_url, :placeholder =>"説明書URL", id: "manual_url" %>
                 <br>
-                <%= f.radio_button :manual,0%> なし
+                <%= f.check_box :manual, {class: "check_box", id: "manual"}, 0, false %> なし
               </td>
             </tr>
 
             <tr>
               <th>ジャンル</th>
-              <td><%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: '-- 選択してください --'} %></td>
+              <td><%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: '-- 選択してください --'} , id: "select_genre"%></td>
             </tr>
 
             <tr>
               <th>税抜価格</th>
-              <td><%= f.text_field :price %>円</td>
+              <td><%= f.text_field :price, id: "item_price" %>円</td>
             </tr>
 
             <tr>
               <th>一日追加料金(税抜き)</th>
-              <td><%= f.text_field :add_price %>円</td>
+              <td><%= f.text_field :add_price , id: "item_add_price"%>円</td>
             </tr>
-
 
             <tr>
               <th class="col-xs-2">消費電力</th>
               <td>
-                <%= f.radio_button :power_consumption_option,1%> あり
-                <%= f.text_field :power_consumption, :placeholder =>"消費電力" %> W
+                <%= f.text_field :power_consumption, :placeholder =>"消費電力", id: "power_consumption" %> W
                 <br>
-                <%= f.radio_button :power_consumption_option,0%> なし
+                <%= f.check_box :power_consumption, {class: "check_box", id: "power_consumption_0"}, 0, false %> なし (0 W)
               </td>
             </tr>
-
 
             <tr>
               <th class="col-xs-2">消費ガス量</th>
               <td>
-                <%= f.radio_button :fuel_economy_option,1%> あり
-                <%= f.text_field :fuel_economy, :placeholder =>"消費ガス量" %> kg/h
+                <%= f.text_field :fuel_economy, :placeholder =>"消費ガス量", id: "fuel_economy" %> kg/h
                 <br>
-                <%= f.radio_button :fuel_economy_option,0%> なし(0 kg/h)
+                <%= f.check_box :fuel_economy, {class: "check_box", id: "fuel_economy_0"}, 0, false %>  なし(0 kg/h)
               </td>
             </tr>
-
-
 
           </table>
        </div>
@@ -89,5 +89,25 @@
      <div class="col-xs-1"></div>
   </div>
   <div class="col-xs-9"></div>
-   <%= f.submit "新規登録" %>
+  <div class="group_submit2">
+   <%= f.submit "新規登録",class: "group_submit_a", id: "item_submit"%>
+  </div>
+
+    <script>
+    $(document).on("turbolinks:load", function(){
+      function readURL(input) {
+        if(input.files && input.files[0]){
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('#img_prev').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#item_image").change(function(){
+        readURL(this);
+      });
+    });
+    </script>
+
 <% end %>

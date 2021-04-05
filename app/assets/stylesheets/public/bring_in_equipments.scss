@@ -1,3 +1,33 @@
 // Place all the styles related to the public/bring_in_equipments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container_cart_item_editlink {
+    display: table;
+	margin-bottom: 10px;
+}
+
+.cart_item_editlink {
+    display: block;
+   	padding: 0.5em 1em;
+    color: black;
+    background: #FFD700;
+    box-shadow: 0 3px 0 rgba(0,0,0,1);
+    border-radius: 9px;
+}
+
+
+a.cart_item_editlink:active {
+  text-decoration: none;
+  box-shadow: none;
+  transform: translate3d(0, 3px, 0);
+}
+
+.parent {
+	display: flex;
+	align-items: flex-end;
+}
+
+.bring_in_button {
+ margin: 0 auto;
+}

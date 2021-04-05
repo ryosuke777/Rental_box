@@ -13,11 +13,11 @@
      <br>
        <div class= "manual_video">
         <% if @item.manual != false %>
-          <p><%= link_to "説明書", @item.manual_url, target: :_blank, rel: "noopener noreferrer",class: "manual" %></p>
+          <p><%= link_to "説明書", @item.manual_url, target: :_blank, rel: "noopener noreferrer",class: "manual", id: "manual_link" %></p>
         <% end %>
 
         <% if @item.video != false %>
-           <p><%= link_to "動画", @item.video_url, target: :_blank, rel: "noopener noreferrer" ,class: "video"%></p>
+           <p><%= link_to "動画", @item.video_url, target: :_blank, rel: "noopener noreferrer" ,class: "video", id: "video_link" %></p>
         <% end %>
        </div>
      </div>
@@ -33,7 +33,7 @@
 
             <tr>
               <th>レンタル品説明</th>
-              <td><%= @item.introduction%></td>
+              <td><%= safe_join(@item.introduction.split("\n"),tag(:br))%></td>
             </tr>
 
             <tr>
@@ -79,4 +79,4 @@
      <div class="col-xs-1"></div>
   </div>
   <div class="col-xs-9"></div>
-   <%= link_to "編集する",  "/admin/items/#{@item.id}/edit"%>
+   <%= button_to "編集する",  "/admin/items/#{@item.id}/edit", method: :get, id: "item_edit"%>

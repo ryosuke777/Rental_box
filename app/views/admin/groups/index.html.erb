@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-2"><h4>会員一覧</h4></div>
+  <div class="col-xs-2"><h4>団体一覧</h4></div>
   <div class="col-xs-9"></div>
   <div class="col-xs-1"></div>
 </div>
@@ -21,6 +21,7 @@
             <th scope="col">レンタル品</th>
             <th scope="col">ガス</th>
             <th scope="col">合計金額</th>
+            <th scope="col"></th>
           </tr>
         </thead>
 
@@ -28,7 +29,7 @@
           <% @groups.each do |group| %>
             <tr>
               <th scope="row"><%= group.id %></th>
-              <td><%= link_to group.group_name ,"/admin/groups/#{group.id}"%></td>
+              <td><%= link_to group.group_name ,"/admin/groups/#{group.id}" ,id: "group_#{group.id}"%></td>
               <td><%= group.representative_name %></td>
               <td><%= group.representative_telephone_number %></td>
               <td>
@@ -47,12 +48,12 @@
               </td>
               <td>
                 <% group.order_items.each do |order_item| %>
-                  <p><%= order_item.item.name %></p>
+                  <p><%= order_item.item.name %> × <%= order_item.amount %></p>
                 <% end %>
               </td>
               <td>
                 <% group.order_gases.each do |order_gase| %>
-                  <p><%= order_gase.gase.name %></p>
+                  <p><%= order_gase.gase.name %> × <%= order_gase.amount %></p>
                 <% end %>
               </td>
               <td>
@@ -62,6 +63,7 @@
                 <%= "ー" %>
                 <% end %>
               </td>
+              <td><%= button_to '削除する', admin_group_path(group.id), method: :delete, data: {confirm: 'この団体を削除しますか？'}, class: 'fbtn' ,id: "destroy_group#{group.id}"%></td>
             </tr>
           <% end %>
         </tbody>

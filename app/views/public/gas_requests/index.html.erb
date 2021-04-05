@@ -35,9 +35,7 @@
    </div>
  </div>
 
-      <br>
-<br>
-<div class="row">
+<div class="row parent">
   <div class="col-xs-1"></div>
   <div class="col-xs-6">
 
@@ -45,8 +43,9 @@
         <thead>
           <tr>
             <th scope="col" class="col-xs-1">名称</th>
-            <th scope="col" class="col-xs-1">価格 (税込)</th>
+            <th scope="col" class="col-xs-1">価格(税込)</th>
             <th scope="col" class="col-xs-1">数量</th>
+            <th scope="col" class="col-xs-1">小計</th>
           </tr>
         </thead>
 
@@ -59,15 +58,16 @@
 
           <tr>
             <td><%= gase.name %></td>
-            <td><%= ((gase.price.to_i)*1.10).floor %></td>
+            <td>¥<%= ((gase.price.to_i)*1.10).floor %></td>
             <td>
   			       <%= form_for(@gas_request, url:public_gas_requests_path) do |f| %>
   			   	     <%= f.hidden_field :gase_id, :value => gase.id %>
   			  	     <%= f.hidden_field :group_id, :value => current_group.id %>
-  			  	     <%= f.text_field :gas_amount, :value =>  @gas_request.gas_amount, :value =>  @test.gas_amount, placeholder:"0" %>
-                 <%= f.submit "更新" %>
+  			  	     <%= f.text_field :gas_amount, :value =>  @test.gas_amount, placeholder:"0" ,id: "gas_amount_#{gase.id}"%>
+                 <%= f.submit "更新", id: "submit_gas_request" %>
                <% end %>
             </td>
+            <td>¥<%= ((gase.price.to_i)*1.10).floor * @test.gas_amount.to_i  %></td>
           </tr>
         <% end %>
       </table>
@@ -109,9 +109,9 @@
             </tbody>
               <thead>
                 <tr>
-                  <td >ガス合計金額</td>
+                  <td>ガス合計金額</td>
                   <td>
-                  <%= @total_gas_payment * 1.10.round %>
+                  ¥<%= (@total_gas_payment.to_i * 1.10).floor%>
                   </td>
                 </tr>
               </thead>
@@ -122,6 +122,6 @@
 </div>
 
   <div class="text-center">
-   <%= link_to '次: 確認画面へ進む',"/public/requests/confirm" %>
+   <%= link_to '次: 確認画面へ進む',"/public/requests/confirm",class: "sink_button", id: "to_confirm_page" %>
 
   </div>

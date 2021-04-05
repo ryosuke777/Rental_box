@@ -1,0 +1,35 @@
+ja:
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 件のエラーがあります"
+        other: "%{count} 件のエラーがあります"
+  activerecord:
+      attributes:
+          item: #モデル名
+            name: レンタル品名
+            price: 税抜価格
+            add_price: 一日追加料金
+            genre: ジャンル
+            introduction: レンタル品説明
+          bring_in_equipment: #モデル名
+            name: 機材名称
+            amount: 数量
+            power_consumption: 消費電力
+          group: #モデル名
+            email: 代表者メールアドレス
+            password: パスワード
+            group_name: 団体名
+            group_name_kana: 団体名カナ
+            representative_name: 代表者
+            representative_name_kana: 代表者カナ
+            representative_telephone_number: 代表者電話番号
+            subdelegate_name: 副代表者
+            subdelegate_name_kana: 副代表者カナ
+            subdelegate_telephone_number: 副代表者電話版号
+            subdelegate_email: 副代表者メールアドレス

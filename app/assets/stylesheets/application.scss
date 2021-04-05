@@ -17,6 +17,51 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.title {
-	color: white;
+
+.header {
+  background-color: #2e2e2e;
+  display: flex;
+  justify-content:flex-end;
+  padding: 10px 20px;
 }
+
+.header > :first-child {
+  margin-right: auto;
+  align-items: center;
+}
+
+.header > div {
+  background-color: #2e2e2e;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.title {
+  color: white;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.header_element {
+  color: #EEEEEE;
+  a:hover{
+  text-decoration: none;
+  color: #BBBBBB;
+}
+}
+
+.alert {
+    color:#262626;
+    background:#FFEBE8;
+    border:2px solid #990000;
+    padding:12px; font-weight:850;
+}
+
+.field_with_errors {
+  display: contents;
+}
+

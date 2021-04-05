@@ -1,0 +1,25 @@
+※このメールはシステムからの自動送信です
+
+<%= @group.group_name %> 様
+
+模擬店出店登録が完了しました。
+申請内容は以下になります。
+
+◆ 販売品目
+<%= @request.item_for_sale %>
+
+◆ 出店日
+<%= @request.date %>
+
+◆ 注文レンタル品
+<% @order_items.each do |order_item|%>
+ <%= order_item.item.name %> × <%= order_item.amount %> 個
+<% end %>
+
+◆ 注文ガス
+<% @order_gases.each do |order_gase|%>
+ <%= order_gase.gase.name %> × <%= order_gase.amount %> 本
+<% end %>
+
+◆ 合計金額
+¥<%= @request.total_payment %>

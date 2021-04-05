@@ -2,25 +2,31 @@ class Public::ItemsController < ApplicationController
 
 
 	def index
-        @genres = Genre.all
-        @items = Item.all
-        if @request == nil
-        @request = Request.new
-        else
-        @request = Request.find_by(group_id: current_group.id)
-        end
+     @genres = Genre.all
+     @items = Item.all
+     if group_signed_in?
+       if Request.where(group_id: current_group.id).present?
+         @request = Request.find_by(group_id: current_group.id)
+       else
+         flash[:notice] = "必要事項を入力してください"
+         redirect_to new_public_request_path
+       end
+     else
+       @request = Request.new
+     end
+
 	end
 
-      def search
-        @genres = Genre.all
-        @genre = Genre.find(params[:id])
-        @items = Item.where(genre: @genre.id)
-        if @request == nil
-        @request = Request.new
-        else
-        @request = Request.find_by(group_id: current_group.id)
-        end
-      end
+  def search
+    @genres = Genre.all
+    @genre = Genre.find(params[:id])
+    @items = Item.where(genre: @genre.id)
+    if group_signed_in?
+       @request = Request.find_by(group_id: current_group.id)
+    else
+       @request = Request.new
+    end
+  end
 
 	def show
       # @cart_items = current_cart.cart_items
@@ -29,10 +35,10 @@ class Public::ItemsController < ApplicationController
       # binding.pry
         @cart_item = CartItem.new
       # @cart_item.quantity += params[:quantity].to_i
-        if @request == nil
-        @request = Request.new
+        if group_signed_in?
+           @request = Request.find_by(group_id: current_group.id)
         else
-        @request = Request.find_by(group_id: current_group.id)
+           @request = Request.new
         end
 	end
 

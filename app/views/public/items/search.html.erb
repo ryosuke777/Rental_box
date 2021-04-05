@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-1"></div>
     <div class="col-xs-10">
-    <p class = "bring_in">
+    <div class = "bring_in">
      <% if group_signed_in? %>
-	    <%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments",class: "Editlink"%>
+	    <%= link_to "ご自身で用意された機材を使用する際はこちらから登録をお願いします。","/public/bring_in_equipments",class: "cart_item_editlink", id: 'registration_bring_in_equipment'%>
      <% end %>
-    </p>
+    </div>
 
     <p class = "item_count">
 	    "<%= @genre.name %>"で<a class= "count"><%= @items.count %></a>件のレンタル品があります。
@@ -18,35 +18,39 @@
 
 		<br>
 		<br>
-		<% @items.each do |item| %>
-		<div class="col-sm-3">
-		   <th>
-		     <p><%= attachment_image_tag item, :image, fallback: asset_path("no_image.jpg"), size: '100x100' ,class: "item_image"%></p>
-		     <p class = "item_name"><%= link_to item.name,"/public/items/#{item.id}"%></p>
-			 <ul>
-			   <li>
-			   	<span class=”dan”>1泊2日</span>
-			   	<span class=”dan2″> ¥<%= item.price %></span>
-			   </li>
-			   <li>
-			   	<span class=”dan”>追加1日</span>
-			   	<span class=”dan2″> ¥<%= item.add_price %></span>
-			   </li>
+		<div class="items_box">
+			<% @items.each do |item| %>
+				<div class="col-sm-3 item">
+				   <th>
+				     <p><%= link_to (attachment_image_tag item, :image, fallback: asset_path("no_image.jpg"), size: '100x100'),"/public/items/#{item.id}" ,class: "item_image"%></p>
+				     <p class = "item_name"><%= link_to item.name,"/public/items/#{item.id}" ,id: "item_#{item.id}"%></p>
+					 <ul>
+					    <li>
+					     	<span class=”dan”>1泊2日</span>
+					    	<span class=”dan2″>¥<%= (item.price.to_i*1.10).floor %> (税込)</span>
+					    </li>
 
- <div class= "manual_video_index">
-        <% if item.manual != false %>
-          <p class= "manual_index"><%= "説明書あり" %></p>
-        <% end %>
+					    <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
+					    <% else %>
+					    <li>
+					    	<span class=”dan”>追加1日</span>
+					    	<span class=”dan2″>¥<%= (item.add_price.to_i*1.10).floor %> (税込)</span>
+					    </li>
+					    <% end %>
 
-        <% if item.video != false %>
-           <p class= "video_index"><%= "動画あり" %></p>
-        <% end %>
- </div>
-
-			 </ul>
-		   </th>
-		</div>
-		<% end %>
+		                <div class= "manual_video_index">
+		                   <% if item.manual != false %>
+		                      <p class= "manual_index"><%= "説明書あり" %></p>
+		                   <% end %>
+		                   <% if item.video != false %>
+		                      <p class= "video_index"><%= "動画あり" %></p>
+		                   <% end %>
+		                </div>
+					 </ul>
+				   </th>
+				</div>
+			<% end %>
+        </div>
     </div>
   <div class="col-xs-1"></div>
 </div>

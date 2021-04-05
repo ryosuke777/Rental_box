@@ -23,9 +23,6 @@
      </div>
 	 <div class="col-xs-7">
 
-
-
-
           <table class="table table-borderless">
 
             <tr>
@@ -35,7 +32,7 @@
 
             <tr>
               <th>レンタル品説明</th>
-              <td><%= @item.introduction%></td>
+              <td><%= safe_join(@item.introduction.split("\n"),tag(:br))%></td>
             </tr>
 
             <tr>
@@ -81,8 +78,8 @@
      <% if group_signed_in? %>
 		 <%= form_for(@cart_item, url:public_cart_items_path) do |f| %>
 			<%= f.hidden_field :item_id, :value => @item.id %>
-		    <%= f.select :item_amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '-- 選択してください --'} %>
-			<%= f.submit "カートに入れる" %>
+		    <%= f.select :item_amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '-- 選択してください --'},id: 'item_amount' %>
+			<%= f.submit "カートに入れる",id: 'item_show_submit' %>
      <% end %>
 		 <% end %>
      </div>

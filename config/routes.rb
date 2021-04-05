@@ -13,10 +13,16 @@ Rails.application.routes.draw do
 	    get 'admin/sign_in' => 'sessions#new'
 	    post 'admin/sign_in' => 'sessions#create'
 	    delete 'admin/sign_out' => 'sessions#destroy'
+
+	    get 'items/order_list' => 'items#order_list'
 	    resources :items
 	    resources :genres, only: [:index, :create, :edit, :update]
-	    resources :groups, only: [:index, :show, :edit, :update]
-	    resources :requests, only: [:index, :show]
+	    resources :groups, only: [:index, :show, :edit, :update, :destroy]
+
+	    delete 'requests/destroy_order_gas/:id' => 'requests#destroy_order_gas'
+	    patch  'requests/change_order_item_amount/:id' => 'requests#change_order_item_amount'
+	    patch  'requests/change_order_gas_amount/:id' => 'requests#change_order_gas_amount'
+	    resources :requests, only: [:index, :show, :edit, :update, :destroy]
 	    resources :gases, only: [:index, :create, :edit, :destroy]
     end
 
@@ -52,6 +58,10 @@ Rails.application.routes.draw do
 	    resources :gas_requests, only: [:index, :update, :destroy, :create, :show, :edit]
 
 	    resources :bring_in_equipments, only: [:new, :create, :index, :update, :edit, :destroy]
+    end
+
+    if Rails.env.development?
+      mount LetterOpenerWeb::Engine, at: '/letter_opener'
     end
 
 end
