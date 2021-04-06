@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 2021_03_23_035908) do
     t.string "subdelegate_name"
     t.string "subdelegate_name_kana"
     t.string "subdelegate_telephone_number"
+    t.string "subdelegate_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subdelegate_email"
     t.index ["email"], name: "index_groups_on_email", unique: true
     t.index ["reset_password_token"], name: "index_groups_on_reset_password_token", unique: true
   end
