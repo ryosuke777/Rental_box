@@ -11,3 +11,22 @@
    display: inline-block;
    margin-left: 110px;
 }
+
+.group_submit_a {
+   width: 200px;
+   background-color: #ea553a;
+   border-radius: 5px;
+   box-shadow: 0 3px 0 rgba(0,0,0,1);
+   color: #ffffff;
+   display: block;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   margin: 10px auto;
+   padding: 10px 0;
+}
+
+.group_submit2 :active {
+  box-shadow: none;
+  transform: translate3d(0, 3px, 0);
+}

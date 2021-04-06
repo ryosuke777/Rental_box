@@ -18,13 +18,13 @@
        <%= f.label :"団体名" %>
      </div>
      <div class = "field col-xs-2">
-       <%= f.text_field :group_name, autofocus: true, autocomplete: "団体名" %>
+       <%= f.text_field :group_name, autofocus: true, autocomplete: "団体名",:placeholder =>"例: 田中ゼミ"  %>
      </div>
      <div class = "field col-xs-1">
        <%= f.label :"団体名カナ" %>
      </div>
      <div class = "field col-xs-5">
-       <%= f.text_field :group_name_kana, autofocus: true, autocomplete: "団体名カナ" %>
+       <%= f.text_field :group_name_kana, autofocus: true, autocomplete: "団体名カナ",:placeholder =>"例: タナカゼミ" %>
      </div>
   </div>
 
@@ -38,13 +38,13 @@
        <%= f.label :"代表者" %>
      </div>
      <div class = "field col-xs-2">
-       <%= f.text_field :representative_name, autofocus: true, autocomplete: "代表者氏名" %>
+       <%= f.text_field :representative_name, autofocus: true, autocomplete: "代表者氏名",:placeholder =>"例: 田中太郎" %>
      </div>
      <div class = "field col-xs-1">
        <%= f.label :"代表者カナ" %>
      </div>
      <div class = "field col-xs-5">
-       <%= f.text_field :representative_name_kana, autofocus: true, autocomplete: "代表者カナ" %>
+       <%= f.text_field :representative_name_kana, autofocus: true, autocomplete: "代表者カナ",:placeholder =>"例: タナカタロウ" %>
      </div>
   </div>
 
@@ -55,7 +55,7 @@
        <p>代表者電話番号</p>
      </div>
      <div class = "field col-xs-8">
-        <%= f.text_field :representative_telephone_number, autofocus: true, autocomplete: "代表者電話番号" %>
+        <%= f.text_field :representative_telephone_number, autofocus: true, autocomplete: "代表者電話番号" ,:placeholder =>"例: 09012345678"%>
      </div>
   </div>
 
@@ -66,7 +66,7 @@
        <p>代表者メールアドレス</p>
      </div>
      <div class = "field col-xs-8">
-        <%= f.email_field :email, autofocus: true, autocomplete: "代表者メールアドレス" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "代表者メールアドレス",:placeholder =>"例: example@example" %>
      </div>
   </div>
 
@@ -80,13 +80,13 @@
        <%= f.label :"副代表者" %>
      </div>
      <div class = "field col-xs-2">
-        <%= f.text_field :subdelegate_name, autofocus: true, autocomplete: "副代表者氏名" %>
+        <%= f.text_field :subdelegate_name, autofocus: true, autocomplete: "副代表者氏名" ,:placeholder =>"例: 佐藤次郎"%>
      </div>
      <div class = "field col-xs-1">
        <%= f.label :"副代表者カナ" %>
      </div>
      <div class = "field col-xs-5">
-        <%= f.text_field :subdelegate_name_kana, autofocus: true, autocomplete: "副代表者カナ" %>
+        <%= f.text_field :subdelegate_name_kana, autofocus: true, autocomplete: "副代表者カナ",:placeholder =>"例: サトウジロウ" %>
      </div>
   </div>
 
@@ -96,7 +96,7 @@
        <p>副代表者電話番号</p>
      </div>
      <div class = "field col-xs-8">
-        <%= f.text_field :subdelegate_telephone_number, autofocus: true, autocomplete: "副代表者電話番号" %>
+        <%= f.text_field :subdelegate_telephone_number, autofocus: true, autocomplete: "副代表者電話番号",:placeholder =>"例: 08098765432" %>
      </div>
   </div>
 
@@ -106,7 +106,7 @@
        <p>副代表者メールアドレス</p>
      </div>
      <div class = "field col-xs-8">
-        <%= f.email_field :subdelegate_email, autofocus: true, autocomplete: "副代表者メールアドレス" %>
+        <%= f.email_field :subdelegate_email, autofocus: true, autocomplete: "副代表者メールアドレス",:placeholder =>"例: hoge@hoge" %>
      </div>
   </div>
 
@@ -138,10 +138,11 @@
 
   <div class="row">
      <div class = "field col-xs-1"></div>
-     <div class = "field col-xs-3">
-      <div class="actions">
-        <%= f.submit "新規登録" %>
-      </div>
+     <div class = "field col-xs-10">
+     <div class="text-center group_submit2">
+        <%= f.submit "新規登録",class: "group_submit_a" %>
+     </div>
+     <div class = "field col-xs-1"></div>
      </div>
   </div>
 

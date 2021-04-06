@@ -1,4 +1,5 @@
 class OrderItem < ApplicationRecord
-  belongs_to :requests
-  belongs_to :items
+  belongs_to :request
+  belongs_to :item
+  delegate :group, to: :request
 end

@@ -1,27 +1,86 @@
 <div class="row">
   <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>レンタル品詳細</h4></div>
+  <div class="col-xs-9"></div>
+</div>
+<br>
+<br>
+<div class="row">
+     <div class="col-xs-1"></div>
+     <div class="col-xs-3">
+		  <%= attachment_image_tag @item, :image, fallback: asset_path("no_image.jpg"), size: '300x225',class: "item_image" %>
+       <br>
+       <br>
+       <div class= "manual_video">
+        <% if @item.manual != false %>
+          <p><%= link_to "説明書", @item.manual_url, target: :_blank, rel: "noopener noreferrer",class: "manual" %></p>
+        <% end %>
 
-    <div class="col-xs-7">
-      <br>
-		<div class="col-xs-4">
-		  <%= attachment_image_tag @item, :image, :fill, 50, 50, fallback: asset_path("no_image.jpg"), size: '150x150' %>
-	    </div>
-	    <div class="col-xs-6">
-			<br>
-			<h4><%= @item.name %></h4>
-			<p><%= @item.introduction %></p>
-			 <ul>
-			   <li><span class=”dan”>ガス燃費</span><span class=”dan2″> <%= @item.fuel_economy %> kg/h</span>
-			   <li><span class=”dan”>消費電力</span><span class=”dan2″> <%= @item.power_consumption %> W</span>
-			   <li><span class=”dan”>1泊2日</span><span class=”dan2″> ¥<%= (@item.price.to_i*1.10).floor %> (税込)</span>
-			   <li><span class=”dan”>追加1日</span><span class=”dan2″> ¥<%= (@item.add_price.to_i*1.10).floor %> (税込)</span>
-			 </ul>
-			<br>
-			<%= form_for(@cart_item, url:public_cart_items_path) do |f| %>
-			  <%= f.hidden_field :item_id, :value => @item.id %>
-			  <%= f.select :item_amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '-- 選択してください --'} %>
-			  <%= f.submit "カートに入れる" %>
-			<% end %>
-		</div>
-	</div>
+        <% if @item.video != false %>
+           <p><%= link_to "動画", @item.video_url, target: :_blank, rel: "noopener noreferrer" ,class: "video"%></p>
+        <% end %>
+       </div>
+     </div>
+	 <div class="col-xs-7">
+
+          <table class="table table-borderless">
+
+            <tr>
+              <th class="col-xs-3">レンタル品名</th>
+              <td><%= @item.name%></td>
+            </tr>
+
+            <tr>
+              <th>レンタル品説明</th>
+              <td><%= safe_join(@item.introduction.split("\n"),tag(:br))%></td>
+            </tr>
+
+            <tr>
+              <th>ジャンル</th>
+              <td><%= @item.genre.name%></td>
+            </tr>
+
+            <tr>
+              <th>税込価格</th>
+              <td><%= (@item.price.to_i*1.10).floor%> 円</td>
+            </tr>
+
+         <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
+         <% else %>
+            <tr>
+              <th>1日追加料金(税込)</th>
+              <td><%= (@item.add_price.to_i*1.10).floor %> 円</td>
+            </tr>
+         <% end %>
+
+            <tr>
+              <th>消費電力</th>
+              <td>
+              	<% if @item.power_consumption.to_i == 0.to_i %>
+              	  -
+              	<% else %>
+              	  <%= @item.power_consumption.to_i %> W
+                <% end %>
+              </td>
+            </tr>
+
+            <tr>
+              <th>ガス消費量</th>
+              <td>
+                <% if @item.fuel_economy.to_f == 0.to_f %>
+                  -
+                <% else %>
+                  <%= @item.fuel_economy %> kg/h
+                <% end %>
+              </td>
+              </tr>
+          </table>
+     <% if group_signed_in? %>
+		 <%= form_for(@cart_item, url:public_cart_items_path) do |f| %>
+			<%= f.hidden_field :item_id, :value => @item.id %>
+		    <%= f.select :item_amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '-- 選択してください --'},id: 'item_amount' %>
+			<%= f.submit "カートに入れる",id: 'item_show_submit' %>
+     <% end %>
+		 <% end %>
+     </div>
 </div>

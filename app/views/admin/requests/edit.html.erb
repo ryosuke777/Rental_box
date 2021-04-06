@@ -1,0 +1,201 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>申請内容編集</h4></div>
+  <div class="col-xs-8"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-7 requests">
+  <h5>◆ 出店情報</h5>
+    <%= form_with model: @request, url:admin_request_path(@request.id), method: :patch,local: true do |f| %>
+      <table class="table table-noborder">
+        <tr>
+          <th>団体名</th>
+          <td><%= @request.group.group_name %></td>
+        </tr>
+        <tr>
+          <th>販売品目</th>
+          <td><%= f.text_field :item_for_sale %></td>
+        </tr>
+        <tr>
+          <th>出店日</th>
+          <td><p><%= f.radio_button :date_option,0%> 10/23(土)</p>
+             <p><%= f.radio_button :date_option,1%> 10/24(日)</p>
+             <p><%= f.radio_button :date_option,2%> 10/23(土),10/24(日) 両日</p>
+         </td>
+        </tr>
+        <tr>
+          <th>パンフレット掲載用画像</th>
+          <td>
+            <%= attachment_image_tag @request, :image, fallback: asset_path("no_image.jpg"), id: "img_prev", size: '320x240' ,class: "ad_image"%>
+            <%= f.attachment_field :image %>
+          </td>
+        </tr>
+      </table>
+      <%= f.submit "更新" %>
+
+
+<script>
+$(document).on("turbolinks:load", function(){
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#request_image").change(function(){
+    readURL(this);
+  });
+});
+</script>
+
+
+    <% end %>
+  </div>
+</div>
+
+<% if @request_bring_in_equipments.present? %>
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-4">
+    <h5>◆ 持ち込み機材</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">持ち込み機材</th>
+            <th scope="col">1台あたり消費電力 (W)</th>
+            <th scope="col">個数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @request_bring_in_equipments.each do |request_bring_in_equipment| %>
+            <tr>
+              <td><%= request_bring_in_equipment.name %></td>
+              <td>
+                <% if request_bring_in_equipment.power_consumption.to_i == 0.to_i %>
+                  -
+                <% else %>
+                  <%= request_bring_in_equipment.power_consumption.to_i %> W
+                <% end %>
+              </td>
+              <td><%= request_bring_in_equipment.amount%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+      <h5>◆ レンタル品申請内容</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">レンタル品名</th>
+            <th scope="col">1泊2日料金(税込)</th>
+            <th scope="col">1日追加料金(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.item.name %></td>
+              <td>¥<%= (order_item.item.price.to_i*1.10).floor %></td>
+              <td>
+                <% if @request.date == "10/23(土)"||@request.date == "10/24(日)"%>
+                <%= "ー" %>
+                <% order_item.item.add_price = 0 %>
+                <% else %>
+                ¥<%= (order_item.item.add_price.to_i*1.10).floor %>
+                <% end %>
+              </td>
+              <td>
+				<%= form_for(order_item, url:"/admin/requests/change_order_item_amount/#{order_item.id}",method: :patch) do |f| %>
+				   <%= f.text_field :amount, :class => 'amount_field' ,id: "order_item_amount"%>
+				   <%= f.submit "更新", id: "change_submit" %>
+				<% end %>
+              </td>
+              <td>
+              	¥<%= (((order_item.item.price.to_i + order_item.item.add_price.to_i)*1.10).floor)*order_item.amount %>
+              </td>
+              <td>
+                <%= button_to '削除する', admin_request_path(order_item.id), method: :delete, data: {confirm: '削除しますか？'}, class: 'fbtn' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-5">
+  <h5>◆ ガス申請内容</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ガス種類</th>
+            <th scope="col">価格(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_gases.each do |order_gase| %>
+            <tr>
+              <td><%= order_gase.gase.name %></td>
+              <td><%= (order_gase.gase.price*1.10).floor %></td>
+              <td>
+              	<%= form_for(order_gase, url:"/admin/requests/change_order_gas_amount/#{order_gase.id}",method: :patch) do |f| %>
+				   <%= f.text_field :amount, :class => 'amount_field' %>
+				   <%= f.submit "更新" %>
+				<% end %>
+              </td>
+              </td>
+              <td>¥<%= ((order_gase.price * order_gase.amount)*1.10).floor %></td>
+              <td>
+              	<%= button_to '削除する', admin_path(order_gase.id), method: :delete, data: {confirm: '削除しますか？'}, class: 'fbtn' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3">
+     <table class="table table-bordered">
+        <tr>
+          <th>合計金額</th>
+          <td>¥<%= @request.total_payment %></td>
+        </tr>
+     </table>
+  </div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+        <div class="text-center">
+        <%= link_to "申請内容を更新",edit_admin_request_path,class: "sink_button2" %>
+        </div>
+    <br>
+    </div>
+  <div class="col-xs-1"></div>
+</div>

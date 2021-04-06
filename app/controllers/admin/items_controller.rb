@@ -14,40 +14,19 @@ class Admin::ItemsController < ApplicationController
 	def create
 	  @item = Item.new(item_params)
 
+	  if params[:item][:video] == 0
+		@item.video_url = nil
+	  end
 
-		if  params[:item][:video] == "0"
-		  @item.video_url = "存在しません"
-		elsif params[:item][:video] == "1"
-          @item.video_url = params[:video_url]
-		end
-
-
-		if  params[:item][:manual] == "0"
-		  @item.manual_url = "存在しません"
-		elsif params[:item][:manual] == "1"
-          @item.manual_url = params[:manual_url]
-		end
-
-	    if params[:item][:power_consumption_option] == "0"
-	      @item.power_consumption = 0.to_i
-	    elsif params[:item][:power_consumption_option] == "1"
-	      @item.power_consumption = params[:power_consumption]
-	    end
-
-
-	    if params[:item][:fuel_economy_option] == "0"
-	      @item.fuel_economy = 0.to_f
-	    elsif params[:item][:fuel_economy_option] == "1"
-	      @item.fuel_economy = params[:fuel_economy]
-	    end
+	  if params[:item][:manual] == 0
+	    @item.manual_url = nil
+	  end
 
 	  if @item.save
 	  	redirect_to admin_item_path(@item.id)
 	  else
-	  	redirect_to "/public/about"
+	  	render :new
 	  end
-
-
 
 	end
 
@@ -58,37 +37,19 @@ class Admin::ItemsController < ApplicationController
 	def update
 	   @item = Item.find(params[:id])
 
-
-		if  @item.video == "0"
-		  @item.video_url = "存在しません"
-		elsif @item.video == "1"
-          @item.video_url = params[:video_url]
+		if params[:item][:video] == 0
+		  @item.video_url = nil
+		else
+		  @item.video = 1
 		end
 
-
-		if  @item.manual == "0"
-		  @item.manual_url = "存在しません"
-		elsif @item.manual == "1"
-          @item.manual_url = params[:manual_url]
+		if params[:item][:manual] == 0
+		  @item.manual_url = nil
+		else
+		  @item.manual = 1
 		end
 
-	    if @item.power_consumption_option == false
-	      @item.power_consumption = 0.to_i
-	    elsif @item.power_consumption_option == "1"
-	      @item.power_consumption = params[:power_consumption]
-	    end
-
-
-	    if @item.fuel_economy_option == false
-	      @item.fuel_economy = 0.to_f
-	    elsif @item.fuel_economy_option == "1"
-	      @item.fuel_economy = params[:fuel_economy]
-	    end
-
-
-
-
-	     if @item.save
+	     if @item.update(item_params)
            redirect_to admin_item_path(@item.id)
            # admin_item_path(@item.id)
          else
@@ -100,7 +61,16 @@ class Admin::ItemsController < ApplicationController
 	   @item = Item.find(params[:id])
 	end
 
+	def order_list
+	   @order_items = OrderItem.all
+       @items = Item.all
+       @gases = Gase.all
+    end
+
 	def destroy
+		@item = Item.find(params[:id])
+		@item.destroy
+		redirect_to admin_items_path
 	end
 
     private

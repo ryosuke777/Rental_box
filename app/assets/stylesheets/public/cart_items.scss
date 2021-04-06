@@ -1,3 +1,83 @@
 // Place all the styles related to the public/cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.alert_over2000 {
+    color:#262626;
+    background:#FFEBE8;
+    border:2px solid #990000;
+    border-radius: 5px;
+    padding:3px ; font-weight:850;
+}
+
+.item_amount_field {
+    width: 40px;
+    height: 25px;
+}
+
+.cart_items_link {
+    margin: 0 auto;
+    width: 450px;
+	  display: flex;
+	  flex-wrap: wrap;
+}
+
+.sink_button2 {
+   width: 200px;
+   background-color: #00CC66;
+   border-radius: 5px;
+   box-shadow: 0 3px 0 rgba(0,0,0,1);
+   color: #ffffff;
+   display: block;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   margin: 10px auto;
+   padding: 10px 0;
+}
+
+a.sink_button2:active{
+  text-decoration: none;
+  box-shadow: none;
+  transform: translate3d(0, 3px, 0);
+}
+
+.sink_button3 {
+   width: 200px;
+   background-color: #ea553a;
+   border-radius: 5px;
+   box-shadow: 0 3px 0 rgba(0,0,0,1);
+   color: #ffffff;
+   display: block;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   margin: 10px auto;
+   padding: 10px 0;
+}
+
+a.sink_button3:active{
+  text-decoration: none;
+  box-shadow: none;
+  transform: translate3d(0, 3px, 0);
+}
+
+.sink_button5 {
+   width: 200px;
+   background-color:#ea3a3a;
+   border-radius: 5px;
+   box-shadow: 0 3px 0 rgba(0,0,0,1);
+   color: #ffffff;
+   display: block;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   margin: 10px auto;
+   padding: 10px 0;
+}
+
+a.sink_button5:active{
+  text-decoration: none;
+  box-shadow: none;
+  transform: translate3d(0, 3px, 0);
+}

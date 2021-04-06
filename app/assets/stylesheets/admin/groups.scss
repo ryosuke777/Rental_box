@@ -1,3 +1,25 @@
 // Place all the styles related to the admin/groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.group_info {
+    display: flex;
+}
+
+.group_edit {
+    margin: auto;
+}
+
+.request-elements {
+	display: flex;
+}
+
+.no-request {
+    color:#262626;
+    background:#FFEBE8;
+    border:2px solid #990000;
+    border-radius: 5px;
+    padding:3px ; font-weight:850;
+    margin-top: 7px;
+    margin-left: 10px;
+}

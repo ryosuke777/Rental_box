@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-2"></div>
-  <div class="col-xs-3"><h4>ガス一覧・追加</h4></div>
+  <div class="col-xs-3"><h4>ガス一覧/追加</h4></div>
   <div class="col-xs-7"></div>
 </div>
 
@@ -9,20 +9,35 @@
   <div class="col-xs-2"></div>
     <div class="col-xs-8">
       <%= form_for(@gase,url:admin_gases_path) do |f| %>
-      <th>
-        <td>ガス名称</td>
-          <td><%= f.text_field :name %></td>
-      </th>
-        <br>
-        ガス容量 (kg)<%= f.text_field :amount %>
-        <br>
-        価格(税抜)<%= f.text_field :price %>
-        <%= f.radio_button :is_active,1%> 有効
-        <%= f.radio_button :is_active,0%> 無効
-        <%= f.submit "追加"%>
+        <table class="table table-noborder">
+          <tr>
+            <th>ガス名称</th>
+            <td><%= f.text_field :name, :placeholder =>"例: ガス 5 kg" %></td>
+          </tr>
+          <tr>
+            <th>ガス容量 (kg)</th>
+            <td><%= f.text_field :amount, :placeholder =>"例: 5" %></td>
+          </tr>
+          <tr>
+            <th>価格(税抜)</th>
+            <td><%= f.text_field :price, :placeholder =>"例: 2200" %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td>
+              <%= f.radio_button :is_active,1%> 有効
+              <br>
+              <%= f.radio_button :is_active,0%> 無効
+              <div class="text-center">
+                  <%= f.submit "追加"%>
+              </div>
+            </td>
+          </tr>
+        </table>
       <% end %>
       <br>
       <table class="table">
+        <h5>ガス一覧</h5>
         <thead>
           <tr>
             <th scope="col" class="col-xs-1">名称</th>

@@ -1,32 +1,64 @@
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-3"><h4>販売品目、出店日登録ページ</h4></div>
-  <div class="col-xs-7"></div>
+  <div class="col-xs-11">
+    <p id="notice"><%= notice %></p>
+    <h4>販売品目、出店日登録ページ</h4>
+  </div>
 </div>
 <br>
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-10">
-    <table class="table table-noborder">
+  <div class="col-xs-6">
     <%= form_with model: @request, url:public_requests_path, method: :post,local: true do |f| %>
     <%= f.hidden_field :group_id, :value => current_group.id %>
-
+    <table class="table table-noborder">
         <tr>
           <th>販売品目</th>
-          <td><%= f.text_field :item_for_sale, placeholder: "例：焼きそば" %></td>
+          <td><%= f.text_field :item_for_sale, placeholder: "例：焼きそば",id: 'field_item_for_sale' %></td>
+        </tr>
+        <tr>
+          <th>パンフレット掲載用画像</th>
+          <td>
+
+      <div class="item-image">
+        <%= attachment_image_tag @request, :image, fallback: asset_path("no_image.jpg"), id: "img_prev", size: '320x240' ,class: "ad_image"%>
+      </div>
+
+
+            <%= f.attachment_field :image, id: "ad_image" %>
+          </td>
         </tr>
         <tr>
           <th>出店日</th>
-        <td>
-           <p><%= f.radio_button :date_option,0%> 10/23(土)</p>
-           <p><%= f.radio_button :date_option,1%> 10/24(日)</p>
-           <p><%= f.radio_button :date_option,2%> 10/23(土),10/24(日) 両日</p>
-        </td>
+          <td>
+             <p><%= f.radio_button :date_option,0 ,id: 'button_date0'%> 10/23(土)</p>
+             <p><%= f.radio_button :date_option,1 ,id: 'button_date1'%> 10/24(日)</p>
+             <p><%= f.radio_button :date_option,2 ,id: 'button_date2'%> 10/23(土),10/24(日) 両日</p>
+          </td>
         </tr>
       </table>
-       <div class="text-center">
-        <%= f.submit '次：レンタル機材を選択する' %>
+       <div class="text-center group_submit2">
+        <%= f.submit '次：レンタル機材を選択する',class: "group_submit_a",id: 'submit_request1' %>
        </div>
+
+<script>
+$(document).on("turbolinks:load", function(){
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#request_image").change(function(){
+    readURL(this);
+  });
+});
+</script>
+
     <% end %>
   </div>
+  <div class="col-xs-5"></div>
 </div>

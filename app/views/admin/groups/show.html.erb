@@ -1,18 +1,19 @@
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-3"><h4><%= "#{@group.group_name}""の登録情報" %></h4></div>
+  <div class="col-xs-3 group_info">
+  	<h4><%= "#{@group.group_name}""の登録情報" %></h4>
+  	<div class="group_edit">
+		  <%= link_to "編集する","/admin/groups/#{@group.id}/edit" %>
+	</div>
+  </div>
   <div class="col-xs-7"></div>
   <div class="col-xs-1"></div>
 </div>
 
 <div class="row">
    <div class="col-xs-1"></div>
-     <div class="col-xs-10">
+     <div class="col-xs-3">
 		<table class="table table-borderless">
-		  <tr>
-		  	<th class="col-xs-2">顧客ID</th>
-		  	<td>顧客ID:  <%= @group.id %></td>
-		  </tr>
 
 		  <tr>
 		  	<th>代表者氏名</th>
@@ -55,11 +56,167 @@
 		  </tr>
 
 		</table>
-
-		<div style="display:inline-flex">
-		  <%= link_to "編集する","/admin/groups/#{@group.id}/edit" %>
-		  申請内容を確認する
-		</div>
      </div>
    <div class="col-xs-1"></div>
 </div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-4 request-elements">
+    <h4>申請内容</h4>
+    <% request = Request.where(group_id: @group.id) %>
+    <% if not request.present? %>
+    <h5 class = "no-request">申請がありません</h5>
+    <% end %>
+  </div>
+  <div class="col-xs-6"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-7 requests">
+  <h5>◆ 出店情報</h5>
+      <table class="table table-noborder">
+        <tr>
+          <th>団体名</th>
+          <td><%= @request.group.group_name %></td>
+        </tr>
+        <tr>
+          <th>販売品目</th>
+          <td><%= @request.item_for_sale %></td>
+        </tr>
+        <tr>
+          <th>出店日</th>
+          <td><%= @request.date %></td>
+        </tr>
+        <tr>
+          <th>パンフレット掲載用画像</th>
+          <td><%= attachment_image_tag @request, :image, fallback: asset_path("no_image.jpg"), size: '320x240' ,class: "ad_image"%></td>
+        </tr>
+      </table>
+  </div>
+</div>
+
+<% if @request_bring_in_equipments.present? %>
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-4">
+    <h5>◆ 持ち込み機材</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">持ち込み機材</th>
+            <th scope="col">1台あたり消費電力 (W)</th>
+            <th scope="col">個数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @request_bring_in_equipments.each do |request_bring_in_equipment| %>
+            <tr>
+              <td><%= request_bring_in_equipment.name %></td>
+              <td>
+                <% if request_bring_in_equipment.power_consumption.to_i == 0.to_i %>
+                  -
+                <% else %>
+                  <%= request_bring_in_equipment.power_consumption.to_i %> W
+                <% end %>
+              </td>
+              <td><%= request_bring_in_equipment.amount%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+      <h5>◆ レンタル品申請内容</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">レンタル品名</th>
+            <th scope="col">1泊2日料金(税込)</th>
+            <th scope="col">1日追加料金(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.item.name %></td>
+              <td>¥<%= (order_item.item.price.to_i*1.10).floor %></td>
+              <td>
+                <% if @request.date == "10/23(土)"||@request.date == "10/24(日)"%>
+                <%= "ー" %>
+                <% order_item.item.add_price = 0 %>
+                <% else %>
+                ¥<%= (order_item.item.add_price.to_i*1.10).floor %>
+                <% end %>
+              </td>
+              <td><%= order_item.amount %></td>
+              <td>
+                ¥<%= (((order_item.item.price.to_i + order_item.item.add_price.to_i)*1.10).floor)*order_item.amount %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-5">
+  <h5>◆ ガス申請内容</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ガス種類</th>
+            <th scope="col">価格(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_gases.each do |order_gase| %>
+            <tr>
+              <td><%= order_gase.gase.name %></td>
+              <td><%= (order_gase.gase.price*1.10).floor %></td>
+              <td><%= order_gase.amount %></td>
+              <td>¥<%= ((order_gase.price * order_gase.amount)*1.10).floor %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3">
+     <table class="table table-bordered">
+        <tr>
+          <th>合計金額</th>
+          <td>¥<%= @request.total_payment %></td>
+        </tr>
+     </table>
+  </div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+        <div class="text-center">
+        <%= link_to "申請内容を変更する",edit_admin_request_path,class: "sink_button2" , id: "admin_request_edit"%>
+        </div>
+    <br>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+

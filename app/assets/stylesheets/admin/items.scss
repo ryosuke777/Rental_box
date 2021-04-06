@@ -1,3 +1,93 @@
 // Place all the styles related to the admin/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.item_image {
+  object-fit: contain;
+}
+
+.manual_video {
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.manual {
+  padding: 5px 10px;
+  background-color: #33CCFF;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 8px;
+}
+
+.video {
+  padding: 5px 10px;
+  background-color: #FF3333;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 8px;
+}
+
+
+.manual_video_index {
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.manual_index {
+  padding: 1px 3px;
+  background-color: #33CCFF;
+  font-size: 10px;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 2px;
+}
+
+.video_index {
+  padding: 1px 3px;
+  background-color: #FF3333;
+  font-size: 10px;
+  color: #FFF;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 2px;
+}
+
+.add_item {
+    margin-top: 30px;
+    padding-right: 20px;
+    padding-left: 0px;
+}
+
+.add_item_link {
+   width: 200px;
+   background-color: #ea553a;
+   border-radius: 5px;
+   box-shadow: 0 3px 0 rgba(0,0,0,1);
+   color: #ffffff;
+   display: block;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   margin-bottom: 10px;
+   margin-left:auto;
+   margin-right:auto;
+   padding: 10px 0;
+}
+
+a.add_item_link:active{
+  text-decoration: none;
+  box-shadow: none;
+  transform: translate3d(0, 3px, 0);
+}
+
+ .item_introduction {
+ height: 260px;
+ width: 570px;
+ }

@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-4">
+    <h4>注文レンタル品一覧</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">レンタル品ID</th>
+            <th scope="col">レンタル品名</th>
+            <th scope="col">注文個数合計</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+            <% if not OrderItem.where(item_id: item.id).sum(:amount) == 0 %>
+            <tr>
+              <th scope="row"><%= item.id %></th>
+              <td><%= link_to item.name,"/admin/items/#{item.id}"%></td>
+              <td><%= OrderItem.where(item_id: item.id).sum(:amount) %></td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-4">
+    <h4>注文ガス一覧</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ガス種類</th>
+            <th scope="col">注文ガス合計</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @gases.each do |gase| %>
+            <% if not OrderGase.where(gase_id: gase.id).sum(:amount) == 0 %>
+            <tr>
+              <td><%= gase.name %></td>
+              <td><%= OrderGase.where(gase_id: gase.id).sum(:amount) %></td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="col-xs-1"></div>
+</div>

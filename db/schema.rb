@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_082228) do
+ActiveRecord::Schema.define(version: 2021_03_23_035908) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 2021_03_06_082228) do
     t.string "subdelegate_name"
     t.string "subdelegate_name_kana"
     t.string "subdelegate_telephone_number"
+    t.string "subdelegate_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subdelegate_email"
     t.index ["email"], name: "index_groups_on_email", unique: true
     t.index ["reset_password_token"], name: "index_groups_on_reset_password_token", unique: true
   end
@@ -106,10 +106,28 @@ ActiveRecord::Schema.define(version: 2021_03_06_082228) do
     t.boolean "fuel_economy_option"
   end
 
+  create_table "order_gases", force: :cascade do |t|
+    t.integer "gase_id"
+    t.integer "request_id"
+    t.integer "price"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "order_id"
+    t.integer "request_id"
     t.integer "price"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "request_bring_in_equipments", force: :cascade do |t|
+    t.integer "request_id"
+    t.string "name"
+    t.integer "power_consumption"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -122,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_082228) do
     t.integer "total_payment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
   end
 
 end
