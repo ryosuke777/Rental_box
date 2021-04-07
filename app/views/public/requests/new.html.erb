@@ -20,7 +20,7 @@
           <th>パンフレット掲載用画像</th>
           <td>
 
-      <div class="item-image">
+      <div class="ad_image">
         <%= attachment_image_tag @request, :image, fallback: asset_path("no_image.jpg"), id: "img_prev", size: '320x240' ,class: "ad_image"%>
       </div>
 
@@ -52,7 +52,7 @@ $(document).on("turbolinks:load", function(){
       reader.readAsDataURL(input.files[0]);
     }
   }
-  $("#request_image").change(function(){
+  $("#ad_image").change(function(){
     readURL(this);
   });
 });

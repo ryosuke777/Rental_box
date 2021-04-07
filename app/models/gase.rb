@@ -1,4 +1,4 @@
 class Gase < ApplicationRecord
-    has_many :gas_requests
-    has_many :order_gases
+  has_many :gas_requests
+  has_many :order_gases
 end

@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: "no.reply.rental.box@gmail.com"
+  default from: 'no.reply.rental.box@gmail.com'
 
   def send_confirm_to_user(user)
     @group = user
@@ -9,8 +9,8 @@ class NotificationMailer < ApplicationMailer
     @order_gases = OrderGase.where(request_id: @request.id)
 
     mail(
-      subject: "模擬店出店申請が完了しました。", #メールのタイトル
-      to: @group.email #宛先
+      subject: '模擬店出店申請が完了しました。', # メールのタイトル
+      to: @group.email # 宛先
     ) do |format|
       format.text
     end
