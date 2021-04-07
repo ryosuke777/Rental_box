@@ -3,7 +3,7 @@ class Group < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :group_name, presence: true, length: { minimum:2,maximum: 20 }
+  validates :group_name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :email, presence: true
   validates :group_name_kana, presence: true
   validates :representative_name, presence: true

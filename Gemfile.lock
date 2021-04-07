@@ -58,6 +58,7 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    ast (2.4.2)
     autoprefixer-rails (10.2.4.0)
       execjs
     bcrypt (3.1.16)
@@ -94,6 +95,14 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    carrierwave (2.2.0)
+      activemodel (>= 5.0.0)
+      activesupport (>= 5.0.0)
+      addressable (~> 2.6)
+      image_processing (~> 1.1)
+      mimemagic (>= 0.3.0)
+      mini_mime (>= 0.1.3)
+      ssrf_filter (~> 1.0)
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
@@ -140,6 +149,9 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.1)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     io-like (0.3.1)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
@@ -190,6 +202,9 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.20.1)
+    parser (3.0.1.0)
+      ast (~> 2.4.1)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -231,6 +246,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
@@ -247,6 +263,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rexml (3.2.5)
     romaji (0.2.4)
       rake (>= 0.8.0)
     rspec-core (3.10.1)
@@ -266,6 +283,24 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    rubocop (1.12.1)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.2.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.4.1)
+      parser (>= 2.7.1.5)
+    rubocop-rails (2.9.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 0.90.0, < 2.0)
+    ruby-progressbar (1.11.0)
+    ruby-vips (2.1.0)
+      ffi (~> 1.12)
     ruby2_keywords (0.0.4)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
@@ -303,6 +338,7 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    ssrf_filter (1.0.7)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -316,6 +352,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    unicode-display_width (2.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -340,6 +377,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-puma
   capybara (>= 2.15)
+  carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
@@ -361,6 +399,8 @@ DEPENDENCIES
   refile!
   refile-mini_magick
   rspec-rails
+  rubocop
+  rubocop-rails
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
@@ -375,4 +415,4 @@ RUBY VERSION
    ruby 2.5.7
 
 BUNDLED WITH
-   2.1.4
+   2.2.15

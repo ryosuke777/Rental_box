@@ -8,13 +8,13 @@ RSpec.describe 'Requestモデルのテスト', type: :model do
     context 'dateカラム' do
       it '空欄でないこと' do
         request.date = ''
-        expect(request.valid?).to eq false;
+        expect(request.valid?).to eq false
       end
     end
     context 'item_for_saleカラム' do
       it '空欄でないこと' do
         request.item_for_sale = ''
-        expect(request.valid?).to eq false;
+        expect(request.valid?).to eq false
       end
     end
   end

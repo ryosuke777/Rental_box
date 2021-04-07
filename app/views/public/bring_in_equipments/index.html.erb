@@ -22,7 +22,7 @@
                 <%= f.text_field :power_consumption , :placeholder =>"例: 1200",id: "power_consumption" %> W
               </div>
               <div class = "power_consumption_selector">
-              <%= f.radio_button :power_consumption,0 ,id: "power_consumption_option"%> なし (0 W)
+              <%= f.check_box :power_consumption, {class: "check_box"}, 0, false %> なし (0 W)
               </div>
             </td>
          </tr>

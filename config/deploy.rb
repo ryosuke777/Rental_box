@@ -1,13 +1,13 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock '~> 3.16.0'
 
-set :application, "Rental_box"
-set :repo_url, "git@github.com:ryosuke777/Rental_box.git"
+set :application, 'Rental_box'
+set :repo_url, 'git@github.com:ryosuke777/Rental_box.git'
 set :branch, 'issue1'
-set :deploy_to, "/home/ec2-user/Rental_box"
+set :deploy_to, '/home/ec2-user/Rental_box'
 set :rbenv_ruby, '2.5.7'
-set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "public", "tmp"
+set :linked_files, %w[config/master.key .env]
+append :linked_dirs, 'log', 'public', 'tmp'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
