@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2 
+  slack: circleci/slack@4.3.3
 
 jobs:
   build:
@@ -56,6 +57,4 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-orbs:
-  slack: circleci/slack@4.3.3
 
