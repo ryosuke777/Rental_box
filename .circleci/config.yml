@@ -1,7 +1,11 @@
 version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2 
+
+jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.7-node-browsers
+      - image: circleci/ruby:2.5.7-stretch-node
         environment:
           - RAILS_ENV: 'test'
           - MYSQL_HOST: 127.0.0.1
