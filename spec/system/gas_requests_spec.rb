@@ -6,6 +6,7 @@ describe 'gas_requestのテスト' do
   let!(:genre2) { create(:genre) }
   let!(:gase) { create(:gase) }
   let!(:item) { create(:item, genre_id: genre.id) }
+  let!(:item2) { create(:item, genre_id: genre2.id) }
   before do
     visit new_group_session_path
     fill_in 'group[email]', with: group.email
