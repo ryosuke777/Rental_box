@@ -20,7 +20,7 @@ describe 'gas_requestのテスト' do
       choose 'button_date2'
       click_button 'submit_request1'
       expect(page).not_to have_content 'すでに申請されています'
-      click_on 'item_2'
+      click_on "item_#{item.id}"
       select '1', from: 'item_amount'
       click_on 'item_show_submit'
       click_on 'to_request_gas'
