@@ -33,19 +33,6 @@ describe 'cart_itemのテスト' do
       expect(CartItem.all).to eq([])
     end
   end
-end
-describe 'gas_requestのテスト' do
-  let(:group) { create(:group) }
-  let!(:genre) { create(:genre) }
-  let!(:genre2) { create(:genre) }
-  let!(:gase) { create(:gase) }
-  let!(:item) { create(:item, genre_id: genre.id) }
-  before do
-    visit new_group_session_path
-    fill_in 'group[email]', with: group.email
-    fill_in 'group[password]', with: group.password
-    click_button 'Log in'
-  end
   context '登録完了後のgas_request内のガス' do
     it '削除されている' do
       visit new_public_request_path
