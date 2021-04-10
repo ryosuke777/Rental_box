@@ -27,7 +27,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on "item_#{item_id}"
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
@@ -74,7 +74,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         visit public_items_path
-        click_on "item_#{item_id}"
+        click_on "item_#{item.id}"
         select '10', from: 'item_amount'
         click_on 'item_show_submit'
         expect(page).to have_content '消費電力合計を2000 W以下にしてください'
