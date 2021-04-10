@@ -27,7 +27,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on 'item_2'
+        click_on "item_#{item_id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
@@ -74,7 +74,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         visit public_items_path
-        click_on 'item_3'
+        click_on "item_#{item_id}"
         select '10', from: 'item_amount'
         click_on 'item_show_submit'
         expect(page).to have_content '消費電力合計を2000 W以下にしてください'
@@ -99,7 +99,7 @@ describe '申請のテスト' do
         choose "button_date#{Faker::Number.within(range: 0..2)}"
         attach_file 'ad_image', "#{Rails.root}/spec/fixtures/profile.png"
         click_button 'submit_request1'
-        click_on 'item_4'
+        click_on 'item_1'
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
@@ -122,7 +122,7 @@ describe '申請のテスト' do
         choose "button_date#{Faker::Number.within(range: 0..2)}"
         attach_file 'ad_image', "#{Rails.root}/spec/fixtures/profile.png"
         click_button 'submit_request1'
-        click_on 'item_5'
+        click_on 'item_1'
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
@@ -148,7 +148,7 @@ describe '申請のテスト' do
         choose "button_date#{Faker::Number.within(range: 0..2)}"
         attach_file 'ad_image', "#{Rails.root}/spec/fixtures/profile.png"
         click_button 'submit_request1'
-        click_on 'item_6'
+        click_on 'item_1'
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
@@ -190,7 +190,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on 'item_7'
+        click_on 'item_1'
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
@@ -212,7 +212,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on 'item_8'
+        click_on 'item_1'
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
