@@ -42,6 +42,7 @@ jobs:
       - run:
          name: yarn Install
          command: yarn install
+
       - run:
           name: RSpec
           command: |
@@ -49,11 +50,6 @@ jobs:
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
             bundle exec rspec spec/ --format documentation \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
