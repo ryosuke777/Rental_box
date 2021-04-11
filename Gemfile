@@ -67,11 +67,11 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'gimei'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave'
 gem 'devise'
@@ -81,6 +81,8 @@ gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'webpacker', github: 'rails/webpacker'
 
 gem 'dotenv-rails'
 group :production do

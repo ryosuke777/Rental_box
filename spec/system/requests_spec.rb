@@ -27,11 +27,11 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
-        fill_in 'gas_amount_1', with: 1
+        fill_in "gas_amount_#{gase.id}", with: 1
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
@@ -74,7 +74,7 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         visit public_items_path
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '10', from: 'item_amount'
         click_on 'item_show_submit'
         expect(page).to have_content '消費電力合計を2000 W以下にしてください'
@@ -99,11 +99,11 @@ describe '申請のテスト' do
         choose "button_date#{Faker::Number.within(range: 0..2)}"
         attach_file 'ad_image', "#{Rails.root}/spec/fixtures/profile.png"
         click_button 'submit_request1'
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
-        fill_in 'gas_amount_1', with: 1
+        fill_in "gas_amount_#{gase.id}", with: 1
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
@@ -122,11 +122,11 @@ describe '申請のテスト' do
         choose "button_date#{Faker::Number.within(range: 0..2)}"
         attach_file 'ad_image', "#{Rails.root}/spec/fixtures/profile.png"
         click_button 'submit_request1'
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
-        fill_in 'gas_amount_1', with: 1
+        fill_in "gas_amount_#{gase.id}", with: 1
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
@@ -148,11 +148,11 @@ describe '申請のテスト' do
         choose "button_date#{Faker::Number.within(range: 0..2)}"
         attach_file 'ad_image', "#{Rails.root}/spec/fixtures/profile.png"
         click_button 'submit_request1'
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
-        fill_in 'gas_amount_1', with: 1
+        fill_in "gas_amount_#{gase.id}", with: 1
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
@@ -190,11 +190,11 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
-        fill_in 'gas_amount_1', with: 1
+        fill_in "gas_amount_#{gase.id}", with: 1
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
@@ -212,11 +212,11 @@ describe '申請のテスト' do
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).not_to have_content 'すでに申請されています'
-        click_on 'item_1'
+        click_on "item_#{item.id}"
         select '1', from: 'item_amount'
         click_on 'item_show_submit'
         click_on 'to_request_gas'
-        fill_in 'gas_amount_1', with: 1
+        fill_in "gas_amount_#{gase.id}", with: 1
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
