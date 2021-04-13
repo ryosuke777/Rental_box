@@ -1,8 +1,9 @@
 # Rental box
 
-test
+testtest
 
 # URL
+http://rental-box.work/
 
 # 使用技術
 - Ruby 2.5.7
