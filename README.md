@@ -15,6 +15,7 @@ https://rental-box.work/
   - VPC
   - EC2
   - RDS
+  - ALB
   - Route53
 - Docker/Docker-compose
 - CircleCi CI/CD

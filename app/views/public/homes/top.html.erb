@@ -2,11 +2,11 @@
 	<p id="notice"><%= notice %></p>
 	<% if group_signed_in? %>
 	<div>
-	  <h1><%= link_to "模擬店出店登録を始めるあ", new_public_request_path,class: "sink_button" %></h1>
+	  <h1><%= link_to "模擬店出店登録を始める", new_public_request_path,class: "sink_button" %></h1>
 	</div>
 	<% else %>
 	<div>
-	  <h1><%= link_to "模擬店出店登録を始めるあ", new_group_registration_path,class: "sink_button" %></h1>
+	  <h1><%= link_to "模擬店出店登録を始める", new_group_registration_path,class: "sink_button" %></h1>
 	</div>
 	<% end %>
 	<br>
