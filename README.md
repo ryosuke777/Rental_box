@@ -26,7 +26,7 @@ https://rental-box.work/
 
 ## CircleCi CI/CD
 - Githubへのpush時に、RspecとRubocopが自動で実行されます。
-- masterブランチへのpushでは、RspecとRubocopが成功した場合、EC2への自動デプロイが実行されます
+- issue1ブランチへのpushでは、RspecとRubocopが成功した場合、EC2への自動デプロイが実行されます
 
 # 機能一覧
 
