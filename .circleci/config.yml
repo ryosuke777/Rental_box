@@ -65,7 +65,11 @@ jobs:
             - "8c:4d:ef:56:e0:34:ba:c5:13:c4:cd:bf:36:92:a5:01"
       - deploy:
           name: Capistrano deploy
-          command: bundle exec cap production deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              exit 0
+            fi
+            bundle exec cap production deploy
 
 
   deploy-and-notify:
