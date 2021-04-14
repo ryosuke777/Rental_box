@@ -22,7 +22,7 @@ https://rental-box.work/
 - RSpec
 
 # AWS構成図
-![インフラ構成図](https://user-images.githubusercontent.com/65978449/114645550-ab132f00-9d14-11eb-9e28-1e0231240bad.jpg)
+![インフラ構成図 (1)](https://user-images.githubusercontent.com/65978449/114654892-13b6d780-9d26-11eb-9ac1-b188d16d340c.jpg)
 
 ## CircleCi CI/CD
 - Githubへのpush時に、RspecとRubocopが自動で実行されます。
