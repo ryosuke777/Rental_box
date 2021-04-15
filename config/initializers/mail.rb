@@ -17,7 +17,7 @@ elsif Rails.env.development?
     domain: 'gmail.com',
     port: 587,
     user_name: 'no.reply.rental.box@gmail.com',
-    password: 'rental77',
+    password: 'kkqwmupttilmiakr',
     authentication: 'plain',
     enable_starttls_auto: true
   }
