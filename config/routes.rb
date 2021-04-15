@@ -59,5 +59,5 @@ Rails.application.routes.draw do
     resources :bring_in_equipments, only: %i[new create index update edit destroy]
   end
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  # mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
