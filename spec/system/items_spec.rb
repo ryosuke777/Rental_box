@@ -141,8 +141,8 @@ describe 'レンタル品表示のテスト' do
       expect(page).to have_content 'item_name_after'
       expect(page).to have_content 'introduction_after'
       expect(page).to have_content genre3.name.to_s
-      expect(page).to have_content (2000).to_i.to_s
-      expect(page).to have_content (800).to_i.to_s
+      expect(page).to have_content 2000.to_i.to_s
+      expect(page).to have_content 800.to_i.to_s
       expect(page).to have_content '3000'
       expect(page).to have_content '0.9'
       click_on 'item_edit'
