@@ -111,13 +111,13 @@ $(document).on("turbolinks:load", function(){
           <% @order_items.each do |order_item| %>
             <tr>
               <td><%= order_item.item.name %></td>
-              <td>¥<%= (order_item.item.price.to_i*1.10).floor %></td>
+              <td>¥<%= (order_item.item.price.to_i).floor %></td>
               <td>
                 <% if @request.date == "10/23(土)"||@request.date == "10/24(日)"%>
                 <%= "ー" %>
                 <% order_item.item.add_price = 0 %>
                 <% else %>
-                ¥<%= (order_item.item.add_price.to_i*1.10).floor %>
+                ¥<%= (order_item.item.add_price.to_i).floor %>
                 <% end %>
               </td>
               <td>
@@ -127,7 +127,7 @@ $(document).on("turbolinks:load", function(){
 				<% end %>
               </td>
               <td>
-              	¥<%= (((order_item.item.price.to_i + order_item.item.add_price.to_i)*1.10).floor)*order_item.amount %>
+              	¥<%= ((order_item.item.price.to_i + order_item.item.add_price.to_i).floor)*order_item.amount %>
               </td>
               <td>
                 <%= button_to '削除する', admin_request_path(order_item.id), method: :delete, data: {confirm: '削除しますか？'}, class: 'fbtn' %>
@@ -157,7 +157,7 @@ $(document).on("turbolinks:load", function(){
           <% @order_gases.each do |order_gase| %>
             <tr>
               <td><%= order_gase.gase.name %></td>
-              <td><%= (order_gase.gase.price*1.10).floor %></td>
+              <td><%= (order_gase.gase.price).floor %></td>
               <td>
               	<%= form_for(order_gase, url:"/admin/requests/change_order_gas_amount/#{order_gase.id}",method: :patch) do |f| %>
 				   <%= f.text_field :amount, :class => 'amount_field' %>
@@ -165,7 +165,7 @@ $(document).on("turbolinks:load", function(){
 				<% end %>
               </td>
               </td>
-              <td>¥<%= ((order_gase.price * order_gase.amount)*1.10).floor %></td>
+              <td>¥<%= ((order_gase.price * order_gase.amount)).floor %></td>
               <td>
               	<%= button_to '削除する', admin_path(order_gase.id), method: :delete, data: {confirm: '削除しますか？'}, class: 'fbtn' %>
               </td>

@@ -42,14 +42,14 @@
 
             <tr>
               <th>税込価格</th>
-              <td><%= (@item.price.to_i*1.10).floor%> 円</td>
+              <td><%= (@item.price.to_i).floor%> 円</td>
             </tr>
 
          <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
          <% else %>
             <tr>
               <th>1日追加料金(税込)</th>
-              <td><%= (@item.add_price.to_i*1.10).floor %> 円</td>
+              <td><%= (@item.add_price.to_i).floor %> 円</td>
             </tr>
          <% end %>
 

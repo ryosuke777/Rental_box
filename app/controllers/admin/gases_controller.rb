@@ -19,6 +19,12 @@ class Admin::GasesController < ApplicationController
     redirect_to admin_gases_path
   end
 
+  def destroy
+    @gase = Gase.find(params[:id])
+    @gase.destroy
+    redirect_to admin_gases_path
+  end
+
   private
 
   def gase_params

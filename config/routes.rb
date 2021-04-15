@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     patch  'requests/change_order_item_amount/:id' => 'requests#change_order_item_amount'
     patch  'requests/change_order_gas_amount/:id' => 'requests#change_order_gas_amount'
     resources :requests, only: %i[index show edit update destroy]
-    resources :gases, only: %i[index create edit destroy]
+    resources :gases, only: %i[index create edit update destroy]
   end
 
   namespace :public do

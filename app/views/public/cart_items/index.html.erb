@@ -43,16 +43,16 @@
                 <%= cart_item.item.power_consumption %>
                 <% end %>
               </td>
-              <td>¥ <%= (cart_item.item.price.to_i*1.10).floor %></td>
+              <td>¥ <%= (cart_item.item.price.to_i).floor %></td>
               <td>
                   <% @request = Request.find_by(group_id: current_group.id) %>
 
                   <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
                     <% cart_item.item.add_price = 0 %>
                   <% end%>
-                ¥ <%= (cart_item.item.add_price.to_i*1.10).floor %>
+                ¥ <%= (cart_item.item.add_price.to_i).floor %>
               </td>
-              <td>¥ <%= ((cart_item.item.price.to_i*1.10+cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
+              <td>¥ <%= ((cart_item.item.price.to_i+cart_item.item.add_price.to_i).floor)*cart_item.item_amount %></td>
               <td><%= button_to '削除する', public_cart_item_path(cart_item.id), method: :delete, data: {confirm: 'このレンタル品をカートから削除しますか？'}, class: 'fbtn' %></td>
             </tr>
           <% end %>
@@ -119,7 +119,7 @@
                   <td>
                     <% @sum = 0 %> <!-- 初期値 -->
                     <% @cart_items.each do |cart_item| %>
-                      <% @sum += ((cart_item.item.price.to_i + cart_item.item.add_price.to_i )*1.10 ).floor * (cart_item.item_amount.to_i) %>
+                      <% @sum += (cart_item.item.price.to_i + cart_item.item.add_price.to_i ).floor * (cart_item.item_amount.to_i) %>
                     <% end %>
                     ¥ <%= @sum %>
                   </td>

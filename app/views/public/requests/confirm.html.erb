@@ -83,16 +83,16 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td><%= cart_item.item.name %></td>
-              <td>¥<%= (cart_item.item.price.to_i*1.10).floor %></td>
+              <td>¥<%= (cart_item.item.price.to_i).floor %></td>
               <td>
                 <% @request = Request.find_by(group_id: current_group.id) %>
                 <% if @request.date == "10/23(土)"||@request.date == "10/24(日)" %>
                   <% cart_item.item.add_price = 0 %>
                 <% end%>
-                ¥<%= (cart_item.item.add_price.to_i*1.10).floor %>
+                ¥<%= (cart_item.item.add_price.to_i).floor %>
               </td>
               <td><%= cart_item.item_amount %></td>
-              <td>¥<%= ((cart_item.item.price.to_i*1.10 + cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
+              <td>¥<%= ((cart_item.item.price.to_i + cart_item.item.add_price.to_i).floor)*cart_item.item_amount %></td>
             </tr>
           <% end %>
         </tbody>
@@ -117,9 +117,9 @@
           <% @gas_requests.each do |gas_request| %>
             <tr>
               <td><%= gas_request.gase.name %></td>
-              <td>¥<%= (gas_request.gase.price * 1.10).floor %></td>
+              <td>¥<%= (gas_request.gase.price).floor %></td>
               <td><%= gas_request.gas_amount %></td>
-              <td>¥<%= ((gas_request.gase.price * gas_request.gas_amount)*1.10).floor %></td>
+              <td>¥<%= (gas_request.gase.price * gas_request.gas_amount).floor %></td>
             </tr>
           <% end %>
         </tbody>

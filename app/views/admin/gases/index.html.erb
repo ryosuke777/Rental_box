@@ -19,7 +19,7 @@
             <td><%= f.text_field :amount, :placeholder =>"例: 5" %></td>
           </tr>
           <tr>
-            <th>価格(税抜)</th>
+            <th>価格(税込)</th>
             <td><%= f.text_field :price, :placeholder =>"例: 2200" %></td>
           </tr>
           <tr>
@@ -44,7 +44,8 @@
             <th scope="col" class="col-xs-1">ガス量 (kg)</th>
             <th scope="col" class="col-xs-1">価格 (税込)</th>
             <th scope="col" class="col-xs-1">状態</th>
-            <th scope="col" class="col-xs-2"></th>
+            <th scope="col" class="col-xs-1"></th>
+            <th scope="col" class="col-xs-1"></th>
           </tr>
         </thead>
 
@@ -52,7 +53,7 @@
         <tr>
           <td><%= gase.name %></td>
           <td><%= gase.amount %></td>
-          <td><%= ((gase.price.to_i)*1.10).floor %></td>
+          <td><%= (gase.price.to_i).floor %></td>
           <td>
         		<% if gase.is_active == true %>
       			有効
@@ -60,7 +61,8 @@
       			無効
       		<% end %>
           </td>
-          <td><%= link_to "編集", edit_admin_gase_path(gase.id) %></td>
+          <td><%= button_to "編集", edit_admin_gase_path(gase.id), method: :get %></td>
+          <td><%= button_to '削除する', admin_gase_path(gase.id), method: :delete, data: {confirm: '削除しますか？'}, class: 'fbtn' %></td>
         <% end %>
       </table>
     </div>

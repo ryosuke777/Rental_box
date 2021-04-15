@@ -24,12 +24,12 @@ class Admin::RequestsController < ApplicationController
     @sum = 0
     @order_items.each do |order_item|
       order_item.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-      @sum += (order_item.item.price.to_i * 1.10 + order_item.item.add_price.to_i * 1.10).floor * order_item.amount
+      @sum += (order_item.item.price.to_i + order_item.item.add_price.to_i).floor * order_item.amount
     end
 
     @gas_sum = 0
     @order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price * 1.10).floor * order_gase.amount
+      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
     end
 
     @total_payment = @sum + @gas_sum
@@ -52,12 +52,12 @@ class Admin::RequestsController < ApplicationController
     @sum = 0
     order_items.each do |order_item2|
       order_item2.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-      @sum += (order_item2.item.price.to_i * 1.10 + order_item2.item.add_price.to_i * 1.10).floor * order_item2.amount
+      @sum += (order_item2.item.price.to_i + order_item2.item.add_price.to_i).floor * order_item2.amount
     end
 
     @gas_sum = 0
     order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price * 1.10).floor * order_gase.amount
+      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
     end
 
     @request.total_payment = @sum + @gas_sum
@@ -80,12 +80,12 @@ class Admin::RequestsController < ApplicationController
     @sum = 0
     order_items.each do |order_item|
       order_item.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-      @sum += (order_item.item.price.to_i * 1.10 + order_item.item.add_price.to_i * 1.10).floor * order_item.amount
+      @sum += (order_item.item.price.to_i + order_item.item.add_price.to_i).floor * order_item.amount
     end
 
     @gas_sum = 0
     order_gases.each do |order_gase2|
-      @gas_sum += (order_gase2.gase.price * 1.10).floor * order_gase2.amount
+      @gas_sum += (order_gase2.gase.price).floor * order_gase2.amount
     end
 
     @request.total_payment = @sum + @gas_sum
@@ -107,12 +107,12 @@ class Admin::RequestsController < ApplicationController
     @sum = 0
     @order_items.each do |order_item|
       order_item.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-      @sum += (order_item.item.price.to_i * 1.10 + order_item.item.add_price.to_i * 1.10).floor * order_item.amount
+      @sum += (order_item.item.price.to_i + order_item.item.add_price.to_i).floor * order_item.amount
     end
 
     @gas_sum = 0
     @order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price * 1.10).floor * order_gase.amount
+      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
     end
 
     @request.total_payment = @sum + @gas_sum
@@ -135,12 +135,12 @@ class Admin::RequestsController < ApplicationController
     @sum = 0
     @order_items.each do |order_item|
       order_item.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-      @sum += (order_item.item.price.to_i * 1.10 + order_item.item.add_price.to_i * 1.10).floor * order_item.amount
+      @sum += (order_item.item.price.to_i + order_item.item.add_price.to_i).floor * order_item.amount
     end
 
     @gas_sum = 0
     @order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price * 1.10).floor * order_gase.amount
+      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
     end
 
     @request.total_payment = @sum + @gas_sum

@@ -52,10 +52,10 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td><%= cart_item.item.name %></td>
-              <td><%= (cart_item.item.price.to_i*1.10).floor %></td>
-              <td><%= (cart_item.item.add_price.to_i*1.10).floor %></td>
+              <td><%= (cart_item.item.price.to_i).floor %></td>
+              <td><%= (cart_item.item.add_price.to_i).floor %></td>
               <td><%= cart_item.item_amount %></td>
-              <td><%= ((cart_item.item.price.to_i*1.10 + cart_item.item.add_price.to_i*1.10).floor)*cart_item.item_amount %></td>
+              <td><%= ((cart_item.item.price.to_i + cart_item.item.add_price.to_i).floor)*cart_item.item_amount %></td>
             </tr>
           <% end %>
         </tbody>
@@ -81,7 +81,7 @@
             <tr>
               <td><%= gas_request.gase.name %></td>
               <td><%= gas_request.gas_amount %></td>
-              <td><%= ((gas_request.gase.price * gas_request.gas_amount)*1.10).floor %></td>
+              <td><%= (gas_request.gase.price * gas_request.gas_amount).floor %></td>
             </tr>
           <% end %>
         </tbody>

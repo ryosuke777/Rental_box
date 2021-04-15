@@ -51,13 +51,13 @@ class Public::RequestsController < ApplicationController
       @sum = 0
       @cart_items.each do |cart_item|
         cart_item.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-        @sum += (cart_item.item.price.to_i * 1.10 + cart_item.item.add_price.to_i * 1.10).floor * cart_item.item_amount
+        @sum += (cart_item.item.price.to_i + cart_item.item.add_price.to_i).floor * cart_item.item_amount
       end
 
       @gas_sum = 0
       @gas_requests.each do |gas_request|
         gas_request.destroy if gas_request.gas_amount == 0
-        @gas_sum += (gas_request.gase.price * 1.10).floor * gas_request.gas_amount
+        @gas_sum += (gas_request.gase.price).floor * gas_request.gas_amount
       end
 
       @total_payment = @sum + @gas_sum
@@ -113,7 +113,7 @@ class Public::RequestsController < ApplicationController
       redirect_to public_requests_thanks_path
     else
       @request1 = Request.find_by(group_id: current_group.id)
-      flash[:notice] = 'すでに申請されています。!!!!!!!'
+      flash[:notice] = 'すでに申請されています。'
       @cart_items = CartItem.where(group_id: current_group.id)
       @cart_items.destroy_all
       @gas_requests = GasRequest.where(group_id: current_group.id)
@@ -158,12 +158,12 @@ class Public::RequestsController < ApplicationController
     @sum = 0
     @cart_items.each do |cart_item|
       cart_item.item.add_price = 0 if @request.date == '10/23(土)' || @request.date == '10/24(日)'
-      @sum += (cart_item.item.price.to_i * 1.10 + cart_item.item.add_price.to_i * 1.10).floor * cart_item.item_amount
+      @sum += (cart_item.item.price.to_i + cart_item.item.add_price.to_i).floor * cart_item.item_amount
     end
 
     @gas_sum = 0
     @gas_requests.each do |gas_request|
-      @gas_sum += (gas_request.gase.price * 1.10).floor * gas_request.gas_amount
+      @gas_sum += (gas_request.gase.price).floor * gas_request.gas_amount
     end
 
     @total_payment = @sum + @gas_sum

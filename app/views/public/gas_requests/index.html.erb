@@ -58,7 +58,7 @@
 
           <tr>
             <td><%= gase.name %></td>
-            <td>¥<%= ((gase.price.to_i)*1.10).floor %></td>
+            <td>¥<%= (gase.price.to_i).floor %></td>
             <td>
   			       <%= form_for(@gas_request, url:public_gas_requests_path) do |f| %>
   			   	     <%= f.hidden_field :gase_id, :value => gase.id %>
@@ -67,7 +67,7 @@
                  <%= f.submit "更新", id: "submit_gas_request" %>
                <% end %>
             </td>
-            <td>¥<%= ((gase.price.to_i)*1.10).floor * @test.gas_amount.to_i  %></td>
+            <td>¥<%= (gase.price.to_i).floor * @test.gas_amount.to_i  %></td>
           </tr>
         <% end %>
       </table>
@@ -111,7 +111,7 @@
                 <tr>
                   <td>ガス合計金額</td>
                   <td>
-                  ¥<%= (@total_gas_payment.to_i * 1.10).floor%>
+                  ¥<%= (@total_gas_payment.to_i).floor%>
                   </td>
                 </tr>
               </thead>
