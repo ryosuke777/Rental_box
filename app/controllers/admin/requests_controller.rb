@@ -29,7 +29,7 @@ class Admin::RequestsController < ApplicationController
 
     @gas_sum = 0
     @order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
+      @gas_sum += order_gase.gase.price.floor * order_gase.amount
     end
 
     @total_payment = @sum + @gas_sum
@@ -57,7 +57,7 @@ class Admin::RequestsController < ApplicationController
 
     @gas_sum = 0
     order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
+      @gas_sum += order_gase.gase.price.floor * order_gase.amount
     end
 
     @request.total_payment = @sum + @gas_sum
@@ -85,7 +85,7 @@ class Admin::RequestsController < ApplicationController
 
     @gas_sum = 0
     order_gases.each do |order_gase2|
-      @gas_sum += (order_gase2.gase.price).floor * order_gase2.amount
+      @gas_sum += order_gase2.gase.price.floor * order_gase2.amount
     end
 
     @request.total_payment = @sum + @gas_sum
@@ -112,7 +112,7 @@ class Admin::RequestsController < ApplicationController
 
     @gas_sum = 0
     @order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
+      @gas_sum += order_gase.gase.price.floor * order_gase.amount
     end
 
     @request.total_payment = @sum + @gas_sum
@@ -140,7 +140,7 @@ class Admin::RequestsController < ApplicationController
 
     @gas_sum = 0
     @order_gases.each do |order_gase|
-      @gas_sum += (order_gase.gase.price).floor * order_gase.amount
+      @gas_sum += order_gase.gase.price.floor * order_gase.amount
     end
 
     @request.total_payment = @sum + @gas_sum

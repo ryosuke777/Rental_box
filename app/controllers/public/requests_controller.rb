@@ -57,7 +57,7 @@ class Public::RequestsController < ApplicationController
       @gas_sum = 0
       @gas_requests.each do |gas_request|
         gas_request.destroy if gas_request.gas_amount == 0
-        @gas_sum += (gas_request.gase.price).floor * gas_request.gas_amount
+        @gas_sum += gas_request.gase.price.floor * gas_request.gas_amount
       end
 
       @total_payment = @sum + @gas_sum
@@ -163,7 +163,7 @@ class Public::RequestsController < ApplicationController
 
     @gas_sum = 0
     @gas_requests.each do |gas_request|
-      @gas_sum += (gas_request.gase.price).floor * gas_request.gas_amount
+      @gas_sum += gas_request.gase.price.floor * gas_request.gas_amount
     end
 
     @total_payment = @sum + @gas_sum
