@@ -77,6 +77,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave'
 gem 'devise'
 gem 'jquery-rails'
+gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'mimemagic', '~> 0.3.10'
 gem 'pry-byebug'
 gem 'rails-i18n'
@@ -84,7 +85,6 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', github: 'rails/webpacker'
-gem 'listen', '>= 3.0.5', '< 3.2'
 
 gem 'dotenv-rails'
 group :production do
