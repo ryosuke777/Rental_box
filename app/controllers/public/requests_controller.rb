@@ -109,7 +109,7 @@ class Public::RequestsController < ApplicationController
         bring_in_equipment.destroy
       end
       @group = current_group
-      NotificationMailer.send_confirm_to_user(@group).deliver
+      NotificationMailer.send_confirm_to_user(@group).deliver_now
       redirect_to public_requests_thanks_path
     else
       @request1 = Request.find_by(group_id: current_group.id)
