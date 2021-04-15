@@ -1,4 +1,4 @@
-class NotificationMailer < ActionMailer::Base
+class NotificationMailer < ApplicationMailer
   default from: 'no.reply.rental.box@gmail.com'
 
   def send_confirm_to_user(user)
