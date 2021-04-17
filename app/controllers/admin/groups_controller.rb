@@ -37,15 +37,17 @@ class Admin::GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @request = Request.find_by(group_id: @group.id)
-    @order_items = OrderItem.where(request_id: @request.id)
-    @order_gases = OrderGase.where(request_id: @request.id)
-    @request_bring_in_equipments = RequestBringInEquipment.where(request_id: @request.id)
+    if Request.find_by(group_id: @group.id).present?
+      @request = Request.find_by(group_id: @group.id)
+      @order_items = OrderItem.where(request_id: @request.id)
+      @order_gases = OrderGase.where(request_id: @request.id)
+      @request_bring_in_equipments = RequestBringInEquipment.where(request_id: @request.id)
 
-    @order_items.destroy_all
-    @order_gases.destroy_all
-    @request_bring_in_equipments.destroy_all
-    @request.destroy
+      @order_items.destroy_all
+      @order_gases.destroy_all
+      @request_bring_in_equipments.destroy_all
+      @request.destroy
+    end
     @group.destroy
     redirect_to admin_groups_path
   end

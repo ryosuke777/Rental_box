@@ -1,6 +1,6 @@
 # Rental box
 
-testtest5
+- 地域の納涼祭や大学の学園祭などを運営する際、出店団体の登録・レンタル品の注文を一括で管理するサイトです。
 
 # URL
 https://rental-box.work/
@@ -27,8 +27,11 @@ https://rental-box.work/
 
 ## CircleCi CI/CD
 - Githubへのpush時に、RspecとRubocopが自動で実行されます。
-- issue1ブランチへのpushでは、RspecとRubocopが成功した場合、EC2への自動デプロイが実行されます
+- issue1ブランチへのpushでは、RspecとRubocopが成功した場合、EC2への自動デプロイが実行されます。
 
 # 機能一覧
+- ユーザー登録、ログイン機能
+- 画像投稿機能
+- 登録完了メール自動送信機能
 
 # テスト
