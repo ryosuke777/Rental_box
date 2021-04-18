@@ -1,9 +1,10 @@
 # Rental box
 
 - 地域の納涼祭や大学の学園祭などを運営する際、出店団体の登録・レンタル品の注文を一括で管理するサイトです。  
+
 ![DA65A915-878B-4133-89E5-0F59EBA1F884_1_105_c](https://user-images.githubusercontent.com/65978449/115143995-2f531280-a085-11eb-8e66-02a75c53be6c.jpeg)
 <img width="700" alt="EE1D4E70-C653-4A43-BC91-3DF569DB15C0" src="https://user-images.githubusercontent.com/65978449/115144186-480ff800-a086-11eb-89b0-e8efc8792200.png">
-![94F68C39-E1E6-4C62-8400-388657AAD95A_1_105_c](https://user-images.githubusercontent.com/65978449/115144426-8528ba00-a087-11eb-9044-91735a4b98d7.jpeg)
+<img width="700" alt="94F68C39-E1E6-4C62-8400-388657AAD95A_1_105_c" src="https://user-images.githubusercontent.com/65978449/115144426-8528ba00-a087-11eb-9044-91735a4b98d7.jpeg">
 
 
 # URL
