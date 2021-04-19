@@ -11,7 +11,6 @@
 # URL
 - 一般ユーザー
   - https://rental-box.work/
-
 - 管理者
   - Email: admin@admin  
   - pass: adminpass  
