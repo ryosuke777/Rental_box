@@ -10,12 +10,12 @@
 
 # URL
 - 一般ユーザー
-https://rental-box.work/
+  - https://rental-box.work/
 
-- 管理者 
-Email: admin@admin
-pass: adminpass
-https://rental-box.work/admins/sign_in
+- 管理者
+  - Email: admin@admin  
+  - pass: adminpass  
+  - https://rental-box.work/admins/sign_in
 
 # 使用技術
 - Ruby 2.5.7
