@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
     get 'items/order_list' => 'items#order_list'
     resources :items
-    resources :genres, only: %i[index create edit update]
+    resources :genres, only: %i[index create edit update destroy]
     resources :groups, only: %i[index show edit update destroy]
 
     delete 'requests/destroy_order_gas/:id' => 'requests#destroy_order_gas'

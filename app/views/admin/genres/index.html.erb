@@ -9,6 +9,7 @@
   <div class="col-xs-2"></div>
     <div class="col-xs-8">
       <%= form_for(@genre,url:admin_genres_path) do |f| %>
+      <%= render 'groups/shared/error_messages2', model: f.object %>
         ジャンル<%= f.text_field :name %>
         <%= f.radio_button :is_active,1%> 有効
         <%= f.radio_button :is_active,0%> 無効
@@ -20,7 +21,8 @@
           <tr>
             <th scope="col" class="col-xs-2">ジャンル</th>
             <th scope="col" class="col-xs-1">状態</th>
-            <th scope="col" class="col-xs-2"></th>
+            <th scope="col" class="col-xs-1"></th>
+            <th scope="col" class="col-xs-1"></th>
           </tr>
         </thead>
 
@@ -34,7 +36,8 @@
       			無効
       		<% end %>
           </td>
-          <td><%= link_to "編集", edit_admin_genre_path(genre.id) %></td>
+          <td><%= button_to "編集", edit_admin_genre_path(genre.id), method: :get  %></td>
+          <td><%= button_to '削除する', admin_genre_path(genre.id), method: :delete, data: {confirm: '削除しますか？'}, class: 'fbtn' %></td>
         <% end %>
       </table>
     </div>

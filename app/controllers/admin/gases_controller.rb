@@ -1,7 +1,14 @@
 class Admin::GasesController < ApplicationController
   def create
     @gase = Gase.new(gase_params)
-    redirect_to '/admin/gases' if @gase.save
+    # redirect_to '/admin/gases' if @gase.save
+
+    if @gase.save
+      redirect_to '/admin/gases'
+    else
+      @gases = Gase.all
+      render :index
+    end
   end
 
   def index

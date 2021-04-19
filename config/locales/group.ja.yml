@@ -17,6 +17,14 @@ ja:
             add_price: 一日追加料金
             genre: ジャンル
             introduction: レンタル品説明
+          gase: #モデル名
+            name: ガス名称
+            amount: ガス容量
+            price: 料金(税込)
+            is_active: ステータス
+          genre: #モデル名
+            name: ジャンル名
+            is_active: ステータス
           bring_in_equipment: #モデル名
             name: 機材名称
             amount: 数量

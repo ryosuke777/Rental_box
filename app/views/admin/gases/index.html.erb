@@ -9,6 +9,7 @@
   <div class="col-xs-2"></div>
     <div class="col-xs-8">
       <%= form_for(@gase,url:admin_gases_path) do |f| %>
+      <%= render 'groups/shared/error_messages2', model: f.object %>
         <table class="table table-noborder">
           <tr>
             <th>ガス名称</th>

@@ -220,7 +220,6 @@ describe '申請のテスト' do
         click_on 'submit_gas_request'
         click_on 'to_confirm_page'
         click_on 'fix_request'
-        # binding.pry
         visit public_request_path(group.request.id)
         request = Request.find_by(group_id: group2.id)
         visit public_request_path(request.id)
@@ -249,7 +248,6 @@ describe '申請のテスト（失敗するパターン）' do
     context '販売品目抜け' do
       it '申請に失敗する' do
         visit new_public_request_path
-        # fill_in 'field_item_for_sale', with: Faker::Lorem.characters(number:5)
         choose 'button_date2'
         click_button 'submit_request1'
         expect(page).to have_content '必要事項を入力してください'
@@ -259,7 +257,6 @@ describe '申請のテスト（失敗するパターン）' do
       it '申請に失敗する' do
         visit new_public_request_path
         fill_in 'field_item_for_sale', with: Faker::Lorem.characters(number: 5)
-        # choose 'button_date', with: Faker::Number.within(range: 0..2)
         click_button 'submit_request1'
         expect(page).to have_content '必要事項を入力してください'
       end
