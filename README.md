@@ -51,7 +51,7 @@
 - 消費ガス量自動計算機能
 - 画像投稿機能(refile)
 - 登録完了メール自動送信機能
-https://docs.google.com/spreadsheets/d/1wV-NuxEMWJB_pbhLTP8lO2Yr3owfocgzAEOpEyNkv1M/edit#gid=0
+- https://docs.google.com/spreadsheets/d/1wV-NuxEMWJB_pbhLTP8lO2Yr3owfocgzAEOpEyNkv1M/edit#gid=0
 
 # テスト
 - Rspec
