@@ -24,7 +24,7 @@ class Public::RequestsController < ApplicationController
       redirect_to new_public_request_path
     else
       @request.save
-      if Time.new(2021, 7, 1) < @request.created_at # 締め切り日2021/6/30(水)
+      if Time.new(2022, 7, 1) < @request.created_at # 締め切り日2022/6/30(木)
         flash[:notice] = '申請期間を過ぎています。来年のご参加をお待ちしております。'
         @request.destroy
         redirect_to '/public'

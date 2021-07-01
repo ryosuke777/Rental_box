@@ -17,4 +17,15 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-require("bootstrap");
+// require("bootstrap");
+document.addEventListener("turbolinks:load", function () {
+	$(function() {
+
+	  $('.menu-trigger').on('click', function() {
+	    $(this).toggleClass('active');
+	    $('#sp-menu').fadeToggle();
+	    return false;
+	  });
+
+	 });
+});

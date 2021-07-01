@@ -71,5 +71,8 @@ margin-left: 110px;
 }
 
 .item_image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: contain;
 }
